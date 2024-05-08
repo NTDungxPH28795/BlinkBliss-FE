@@ -432,7 +432,7 @@ const ProductDetail = () => {
                     ))}
                   </div>
                   
-                  <div className="remaining-quantity mt-3">
+                  {/* <div className="remaining-quantity mt-3">
                     <p>
                       {selectedSize &&
                         `Tổng số lượng sản phẩm cho loại
@@ -455,7 +455,7 @@ const ProductDetail = () => {
                         <Alert type="error" message={quantityError} showIcon />
                       )}
                     </p>
-                  </div>
+                  </div> */}
                   {quantityError && (
                     <div className="quantity-error mt-3">
                       <p style={{ color: "red" }}>{quantityError}</p>
