@@ -8,7 +8,7 @@ import { IProducts } from "../../../types/product2";
 const { Option } = Select;
 
 type FormData = {
-  size: number;
+  size: string;
   quantity: number;
   color: string;
 };
@@ -99,7 +99,7 @@ const ProductAdd = () => {
                     Kích Cỡ
                   </label>
                   <input
-                    type="number"
+                    type="string"
                     id="size"
                     {...register("size", { required: true, min: 1 })}
                     className={`form-control ${errors.size ? "is-invalid" : ""}`}
