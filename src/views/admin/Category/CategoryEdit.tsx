@@ -11,7 +11,6 @@ const CategoryEdit: React.FC = () => {
     const [form] = Form.useForm();
     const [updateBrand] = useUpdateBrandMutation();
     const [messageApi, contextHolder] = message.useMessage();
-    // const navigate = useNavigate();
     const { idBrand } = useParams<{ idBrand: string }>();
     const { data: brandData } = useGetBrandByIdQuery(idBrand || "");
     const [, setImage] = useState("");
