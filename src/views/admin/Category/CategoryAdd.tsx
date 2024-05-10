@@ -8,7 +8,6 @@ import { IBrands } from '../../../types/brand';
 const CategoryAdd: React.FC = () => {
     const [form] = Form.useForm();
     const [addBrand] = useAddBrandMutation();
-    // const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
     const [images, setImage] = useState("");
 
@@ -41,10 +40,6 @@ const CategoryAdd: React.FC = () => {
             });
     };
 
-    // const onFinishFailed = (errorInfo: any) => {
-    //     console.log('Failed:', errorInfo);
-    // };
-    // Preview image
     const inputFile: any = document.getElementById("file-input");
     const previewImage: any = document.getElementById("preview-image");
 
@@ -67,7 +62,6 @@ const CategoryAdd: React.FC = () => {
             <div className="row">
                 <div className="card-body">
                     <h5 className="card-title add-new p-4 border-1 fw-semibold mb-4">Thêm Danh Mục</h5>
-                    {/* {contextHolder} */}
                     <Form
                         form={form}
                         name="basic"
