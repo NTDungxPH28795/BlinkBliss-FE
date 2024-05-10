@@ -11,10 +11,10 @@ import { useGetProductsQuery } from "../../../services/product.service";
 
 type FieldType = {
   _id?: string;
-  size?: number;
+  size?: string;
+  price_var?: number;
   product_id?: string;
   quantity?: number;
-  color?: string;
 };
 
 const ProductProductEdit = () => {
@@ -47,8 +47,8 @@ const ProductProductEdit = () => {
         _id: productData?.productDetail._id,
         size: productData?.productDetail.size,
         quantity: productData?.productDetail.quantity,
+        price_var: productData?.productDetail.price_var,
         product_id: productData?.productDetail.product_id,
-        color: productData?.productDetail.color,
       });
     }
   }, [productData, form]);
@@ -103,7 +103,7 @@ const ProductProductEdit = () => {
                   <Input disabled />
                 </Form.Item>
                 <Form.Item label="Tên sản Phẩm" name="product_id">
-                  <Select disabled placeholder="Chọn Sản Phẩm">
+                  <Select  placeholder="Chọn Sản Phẩm">
                     {productsData &&
                       productsData?.map((product) => (
                         <Option key={product._id} value={product._id}>
@@ -115,7 +115,7 @@ const ProductProductEdit = () => {
                 <Form.Item<FieldType> name="size" label="Size">
 
                   <input
-                    type="number"
+                    type="text"
                     className={`form-control ${errors.size ? "is-invalid" : ""
                       }`}
                   />
@@ -127,15 +127,13 @@ const ProductProductEdit = () => {
                       }`}
                   />
                 </Form.Item>
-
-                <Form.Item label="Color" name="color">
+                <Form.Item label="Gia chi tiet" name="price_var" rules={[]}>
                   <input
-                    type="text"
-                    className={`form-control ${errors.color ? "is-invalid" : ""
+                    type="number"
+                    className={`form-control ${errors.price_var ? "is-invalid" : ""
                       }`}
                   />
                 </Form.Item>
-
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                   <Button
                     type="primary"

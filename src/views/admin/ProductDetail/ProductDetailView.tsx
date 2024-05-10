@@ -5,16 +5,16 @@ import {
   Button,
   Select,
   Alert,
-  Input,
+  // Input,
   notification,
 } from "antd";
-import { IProduct } from "../types/product";
+// import { IProduct } from "../types/product";
 import { Link, useParams } from "react-router-dom"; // Import thêm useParams
 import {
   SearchOutlined,
   CloseOutlined,
   EditOutlined,
-  PlusOutlined,
+  // PlusOutlined,
 } from "@ant-design/icons";
 import {
   useGetProductDetailQuery,
@@ -31,8 +31,7 @@ const { Option } = Select;
 
 interface DataType {
   key: React.Key;
-  size: number;
-  color: string;
+  size: string;
   quantity: number;
   product_id: string;
 }
@@ -91,11 +90,11 @@ const Dashboard = (props: Props) => {
         // console.log(filteredProducts);
 
         const updatedDataSource = filteredProducts?.map(
-          ({ _id, size, color, quantity, product_id }: IProduct) => ({
+          ({ _id, size, quantity, product_id, price_var }) => ({
             key: _id,
             size,
-            color,
             quantity,
+            price_var,
             product_id: product.find((role) => role?._id === product_id)?.name,
           })
         );
@@ -194,16 +193,25 @@ const Dashboard = (props: Props) => {
         return size;
       },
     },
-    {
-      title: "Color",
-      dataIndex: "color",
-      key: "color",
-    },
+
     {
       title: "Quantity",
       dataIndex: "quantity",
       key: "quantity",
       // render:(quantity) => (quantity >= 0 ? quantity : 0)
+    },
+    {
+      title: "price_var",
+      dataIndex: "price_var",
+      key: "price_var",
+      render: (price_var:number, record:any) => (
+        <span>
+          {record.price_var?.toLocaleString("vi-VN", {
+            style: "currency",
+            currency: "VND",
+          })}
+        </span>
+      ),
     },
     {
       title: <Link to={`/admin/product/detail/add/${id}`}>
@@ -297,11 +305,11 @@ const Dashboard = (props: Props) => {
         </Select>
         <Select
           style={{ width: 200, height: 40, marginRight: 8, margin: 5 }}
-          placeholder="Chọn Kích Thước"
+          placeholder="Chọn loại hàng"
           value={selectedSize}
           onChange={(value) => setSelectedSize(value)}
         >
-          <Option value={undefined}>Tất cả kích thước</Option>
+          <Option value={undefined}>Tất cả loại</Option>
           {uniqueSizes.map((size) => (
             <Option key={size} value={size}>
               {size}
