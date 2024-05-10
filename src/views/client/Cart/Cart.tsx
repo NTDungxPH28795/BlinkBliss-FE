@@ -55,7 +55,7 @@ const Cart = () => {
     (product: any) => product.status === true
   );
   const totalCost = productsWithTrueStatus?.reduce(
-    (acc, product: any) => acc + product.quantity * product.price_sale,
+    (acc, product: any) => acc + product.quantity * product.price,
     0
   );
   //
@@ -109,7 +109,7 @@ const Cart = () => {
               price: price,
               price_sale: price_sale,
               quantity: quantity,
-              total: price_sale * quantity,
+              total: price * quantity,
               idCartDetail: idCartDetail,
               status: status,
               cart_id: cart_id,
@@ -355,8 +355,8 @@ const Cart = () => {
                     <th scope="col">Hình Ảnh</th>
                     <th scope="col">Tên Sản Phẩm</th>
                     {/* <th scope="col">Số lượng còn lại</th> */}
-                    {/* <th scope="col">Kích Cỡ</th> */}
-                    <th scope="col">Màu Sắc</th>
+                    <th scope="col">Kích Cỡ</th>
+                    {/* <th scope="col">Màu Sắc</th> */}
                     <th scope="col">Số Lượng</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tạm Tính</th>
@@ -379,11 +379,11 @@ const Cart = () => {
                       <td>
                         <h6>{item?.name}</h6>
                       </td>
-                      {/* <td>
-                        <h5>{item?.size}</h5>
-                      </td> */}
                       <td>
-                        {/* <div style={{ display: "flex", alignItems: "center" }}>
+                        <h5>{item?.size}</h5>
+                      </td>
+                      {/* <td>
+                        <div style={{ display: "flex", alignItems: "center" }}>
                           <div style={{ display: "flex" }}>
                             <button
                               style={{
@@ -394,16 +394,16 @@ const Cart = () => {
                               }}
                             ></button>
                           </div>
-                        </div> */}
+                        </div>
                             <h5>{item?.color}</h5>
-                      </td>
+                      </td> */}
                       <td>
                         <h5>{item.quantity}</h5>
                       </td>
 
                       <td>
                         <h5>
-                          {item.price_sale?.toLocaleString("vi-VN", {
+                          {item.price?.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",
                           })}

@@ -65,9 +65,8 @@ const OrderDetails: React.FC<{ roleMane: any }> = ({ roleMane }) => {
                     <thead>
                         <tr>
                             <th scope="col">Hình Ảnh</th>
-                            <th scope="col"> Tên Sản Phẩm</th>
+                            <th scope="col" colSpan={2}> Tên Sản Phẩm</th>
                             <th scope="col"> Kích Cỡ</th>
-                            <th scope="col"> Màu Sắc</th>
                             <th scope="col"> Số Lượng</th>
                             <th scope="col"> Giá</th>
                             <th scope="col"> Tạm Tính</th>
@@ -83,27 +82,18 @@ const OrderDetails: React.FC<{ roleMane: any }> = ({ roleMane }) => {
                                         src={item?.image}
                                         alt="" />
                                 </td>
-                                <td style={{ width: "200px" }}>
+                                <td style={{ width: "200px" }} colSpan={2}>
                                     <h6>{item?.name}</h6>
                                 </td>
                                 <td style={{ width: "100px", textAlign: "center" }}>
                                     <h5>{item?.size}</h5>
 
                                 </td>
-                                <td style={{ width: "100px" }}>
-                                    <div style={{ display: "flex", alignItems: "center" }}>
-                                        <button
-                                            style={{ backgroundColor: item?.color, width: "20px", height: "20px", margin: "5px" }}
-                                        ></button>
-                                        <h5>{item?.color}</h5>
-                                    </div>
-
-                                </td>
                                 <td style={{ width: "100px", textAlign: "center" }}>
                                     <h5>{item?.quantity}</h5>
                                 </td>
                                 <td style={{ width: "100px" }}>
-                                    <h5>{item?.price_sale?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h5>
+                                    <h5>{item?.price?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h5>
                                 </td>
                                 <td style={{ width: "100px" }}>
                                     <h5>{item?.total?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h5>

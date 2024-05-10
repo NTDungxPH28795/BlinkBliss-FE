@@ -11,8 +11,7 @@ import { useGetProductsQuery } from "../../../services/product.service";
 
 type FieldType = {
   _id?: string;
-  size?: string;
-  price_var?: number;
+  size?: number;
   product_id?: string;
   quantity?: number;
 };
@@ -47,7 +46,6 @@ const ProductProductEdit = () => {
         _id: productData?.productDetail._id,
         size: productData?.productDetail.size,
         quantity: productData?.productDetail.quantity,
-        price_var: productData?.productDetail.price_var,
         product_id: productData?.productDetail.product_id,
       });
     }
@@ -103,7 +101,7 @@ const ProductProductEdit = () => {
                   <Input disabled />
                 </Form.Item>
                 <Form.Item label="Tên sản Phẩm" name="product_id">
-                  <Select  placeholder="Chọn Sản Phẩm">
+                  <Select disabled placeholder="Chọn Sản Phẩm">
                     {productsData &&
                       productsData?.map((product) => (
                         <Option key={product._id} value={product._id}>
@@ -127,13 +125,7 @@ const ProductProductEdit = () => {
                       }`}
                   />
                 </Form.Item>
-                <Form.Item label="Gia chi tiet" name="price_var" rules={[]}>
-                  <input
-                    type="number"
-                    className={`form-control ${errors.price_var ? "is-invalid" : ""
-                      }`}
-                  />
-                </Form.Item>
+
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                   <Button
                     type="primary"

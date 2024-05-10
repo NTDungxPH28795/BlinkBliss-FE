@@ -108,6 +108,12 @@ const CategoryView: React.FC = () => {
                             >
                                 <Button
                                 className='bg-danger text-light'
+                                    // type="primary"
+                                    // style={{
+                                    //     backgroundColor: "red",
+                                    //     margin: "4px",
+                                    //     minWidth: "4em",
+                                    // }}
                                 >
                                     <i className="ti ti-power"></i>
                                 </Button>
@@ -116,6 +122,11 @@ const CategoryView: React.FC = () => {
                             <Button
                             className='col-6'
                                 type="primary"
+                                // style={{
+                                //     backgroundColor: "blue",
+                                //     margin: "4px",
+                                //     minWidth: "4em",
+                                // }}
                             >
                                 <Link to={`${id}/edit`} >
                                 <i className="ti ti-edit"></i>
