@@ -9,7 +9,7 @@ const Blog = () => {
                     <div className="row">
                         <div className="col-lg-4">
                             <div className="categories_post">
-                                <img src="https://hthaostudio.com/wp-content/uploads/2019/08/Giay-nam-4.jpg" alt="post" />
+                                <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411196/POP%20MART/rcytrq1aenll6u5xzi8d.webp" alt="post" />
                                 <div className="categories_details">
                                     <div className="categories_text">
                                         <a href="blog-details.html">
@@ -23,7 +23,7 @@ const Blog = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="categories_post">
-                                <img src="https://hthaostudio.com/wp-content/uploads/2019/08/Giay-nam-4.jpg" alt="post" />
+                                <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411196/POP%20MART/rcytrq1aenll6u5xzi8d.webp" alt="post" />
                                 <div className="categories_details">
                                     <div className="categories_text">
                                         <a href="blog-details.html">
@@ -37,7 +37,7 @@ const Blog = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="categories_post">
-                                <img src="https://hthaostudio.com/wp-content/uploads/2019/08/Giay-nam-4.jpg" alt="post" />
+                                <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411196/POP%20MART/rcytrq1aenll6u5xzi8d.webp" alt="post" />
                                 <div className="categories_details">
                                     <div className="categories_text">
                                         <a href="blog-details.html">
@@ -77,7 +77,7 @@ const Blog = () => {
                                     </div>
                                     <div className="col-md-9">
                                         <div className="blog_post">
-                                            <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="" />
+                                            <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="" />
                                             <div className="blog_details">
                                                 <a href="single-blog.html">
                                                     <h2>Astronomy Binoculars A Great Alternative</h2>
@@ -109,7 +109,7 @@ const Blog = () => {
                                     </div>
                                     <div className="col-md-9">
                                         <div className="blog_post">
-                                            <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="" />
+                                            <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="" />
                                             <div className="blog_details">
                                                 <a href="single-blog.html">
                                                     <h2>The Basics Of Buying A Telescope</h2>
@@ -141,7 +141,7 @@ const Blog = () => {
                                     </div>
                                     <div className="col-md-9">
                                         <div className="blog_post">
-                                            <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="" />
+                                            <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="" />
                                             <div className="blog_details">
                                                 <a href="single-blog.html">
                                                     <h2>The Glossary Of Telescopes</h2>
@@ -173,7 +173,7 @@ const Blog = () => {
                                     </div>
                                     <div className="col-md-9">
                                         <div className="blog_post">
-                                            <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="" />
+                                            <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="" />
                                             <div className="blog_details">
                                                 <a href="single-blog.html">
                                                     <h2>The Night Sky</h2>
@@ -205,7 +205,7 @@ const Blog = () => {
                                     </div>
                                     <div className="col-md-9">
                                         <div className="blog_post">
-                                            <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="" />
+                                            <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="" />
                                             <div className="blog_details">
                                                 <a href="single-blog.html">
                                                     <h2>Telescopes 101</h2>
@@ -255,7 +255,7 @@ const Blog = () => {
                                     <div className="br"></div>
                                 </aside>
                                 <aside className="single_sidebar_widget author_widget">
-                                    <img className="author_img rounded-circle" src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="" />
+                                    <img className="author_img rounded-circle" src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="" />
                                     <h4>Charlie Barber</h4>
                                     <p>Senior blog writer</p>
                                     <div className="social_icon">
@@ -272,7 +272,7 @@ const Blog = () => {
                                 <aside className="single_sidebar_widget popular_post_widget">
                                     <h3 className="widget_title">Popular Posts</h3>
                                     <div className="media post_item">
-                                        <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="post" />
+                                        <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="post" />
                                         <div className="media-body">
                                             <a href="blog-details.html">
                                                 <h3>Space The Final Frontier</h3>
@@ -281,7 +281,7 @@ const Blog = () => {
                                         </div>
                                     </div>
                                     <div className="media post_item">
-                                        <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="post" />
+                                        <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="post" />
                                         <div className="media-body">
                                             <a href="blog-details.html">
                                                 <h3>The Amazing Hubble</h3>
@@ -290,7 +290,7 @@ const Blog = () => {
                                         </div>
                                     </div>
                                     <div className="media post_item">
-                                        <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="post" />
+                                        <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="post" />
                                         <div className="media-body">
                                             <a href="blog-details.html">
                                                 <h3>Astronomy Or Astrology</h3>
@@ -299,7 +299,7 @@ const Blog = () => {
                                         </div>
                                     </div>
                                     <div className="media post_item">
-                                        <img src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="post" />
+                                        <img src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="post" />
                                         <div className="media-body">
                                             <a href="blog-details.html">
                                                 <h3>Asteroids telescope</h3>
@@ -310,7 +310,7 @@ const Blog = () => {
                                     <div className="br"></div>
                                 </aside>
                                 <aside className="single_sidebar_widget ads_widget">
-                                    <a href="#"><img className="img-fluid" src="https://tse4.mm.bing.net/th?id=OIP.K6YtJUNTmdpcjeCdttzBRwHaFj&pid=Api&P=0&h=180" alt="" /></a>
+                                    <a href="#"><img className="img-fluid" src="https://res.cloudinary.com/dwxumu69m/image/upload/v1715411662/POP%20MART/fsljwvuyvwlyitgz0t85.webp" alt="" /></a>
                                     <div className="br"></div>
                                 </aside>
                                 <aside className="single_sidebar_widget post_category_widget">
