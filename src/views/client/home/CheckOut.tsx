@@ -38,7 +38,7 @@ const CheckOut = () => {
   const [voucherStatus, setVoucherStatus] = useState({});
   // 
 
-  console.log(voucherStatus)
+  // console.log(voucherStatus)
 
   // useEffect(() => {
   //   if (allVouchersData) {
