@@ -6,6 +6,7 @@ import {
 } from "../../../../services/product.service";
 import { useGetBrandsQuery } from "../../../../services/brand.service";
 
+
 const PageProduct = () => {
   const { data: productData, isLoading } = useGetProductsQuery();
   const { data: brandData } = useGetBrandsQuery();
