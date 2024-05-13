@@ -5,16 +5,16 @@ import {
   Button,
   Select,
   Alert,
-  Input,
+  // Input,
   notification,
 } from "antd";
-import { IProduct } from "../types/product";
+// import { IProduct } from "../types/product";
 import { Link, useParams } from "react-router-dom"; // Import thêm useParams
 import {
   SearchOutlined,
   CloseOutlined,
   EditOutlined,
-  PlusOutlined,
+  // PlusOutlined,
 } from "@ant-design/icons";
 import {
   useGetProductDetailQuery,
@@ -31,8 +31,7 @@ const { Option } = Select;
 
 interface DataType {
   key: React.Key;
-  size: number;
-  color: string;
+  size: text;
   quantity: number;
   product_id: string;
 }
@@ -194,11 +193,7 @@ const Dashboard = (props: Props) => {
         return size;
       },
     },
-    {
-      title: "Color",
-      dataIndex: "color",
-      key: "color",
-    },
+
     {
       title: "Quantity",
       dataIndex: "quantity",

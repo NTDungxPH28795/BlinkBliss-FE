@@ -23500,3 +23500,11 @@ select::-ms-expand {
 .highlight-hero-title.position-relative {
   width: 550px !important;
 }
+
+.blog_post img, .post_item img, .author_img{
+  width: 200px;
+}
+
+img{
+  object-fit: scale-down;
+}

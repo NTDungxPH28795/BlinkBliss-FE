@@ -99,7 +99,7 @@ const ProductAdd = () => {
                     Kích Cỡ
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     id="size"
                     {...register("size", { required: true, min: 1 })}
                     className={`form-control ${errors.size ? "is-invalid" : ""}`}

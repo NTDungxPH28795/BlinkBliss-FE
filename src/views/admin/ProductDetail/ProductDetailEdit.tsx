@@ -14,7 +14,6 @@ type FieldType = {
   size?: number;
   product_id?: string;
   quantity?: number;
-  color?: string;
 };
 
 const ProductProductEdit = () => {
@@ -48,7 +47,6 @@ const ProductProductEdit = () => {
         size: productData?.productDetail.size,
         quantity: productData?.productDetail.quantity,
         product_id: productData?.productDetail.product_id,
-        color: productData?.productDetail.color,
       });
     }
   }, [productData, form]);
@@ -115,7 +113,7 @@ const ProductProductEdit = () => {
                 <Form.Item<FieldType> name="size" label="Size">
 
                   <input
-                    type="number"
+                    type="text"
                     className={`form-control ${errors.size ? "is-invalid" : ""
                       }`}
                   />
@@ -124,14 +122,6 @@ const ProductProductEdit = () => {
                   <input
                     type="number"
                     className={`form-control ${errors.quantity ? "is-invalid" : ""
-                      }`}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Color" name="color">
-                  <input
-                    type="text"
-                    className={`form-control ${errors.color ? "is-invalid" : ""
                       }`}
                   />
                 </Form.Item>

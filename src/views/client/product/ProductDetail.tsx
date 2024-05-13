@@ -21,6 +21,7 @@ import RelatedInformation from "./RelatedInformation";
 
 const { TabPane } = Tabs;
 
+
 const ProductDetail = () => {
   const { data: productData } = useGetProductsQuery();
   const [dataSourceToRender, setDataSourceToRender] = useState([]);
@@ -37,140 +38,93 @@ const ProductDetail = () => {
   const { _id } = useParams();
   const { data: prodetailData } = useGetProductByIdQuery(_id);
 
+  // console.log(prodetailData);
+  
+
   const brandName = brandData?.find(
     (brand) => brand._id === prodetailData?.brand_id
   )?.name;
-  const { data: productDataDetail, isLoading } =
-    useGetAllsProductsDetailQuery(_id);
+  const { data: productDataDetail, isLoading } = useGetAllsProductsDetailQuery(_id);
+
+// console.log(productDataDetail);
 
   const [productSizes, setProductSizes] = useState([]);
+  useEffect(() => {
+    if (productDataDetail) {
+      // Kiểm tra xem productDataDetail có tồn tại và không rỗng
+      // Lấy giá trị của size từ productDataDetail và gán vào productSizes
+      const sizes = productDataDetail.map((product:any) => product.size);
+      setProductSizes(sizes);
+    }
+  }, [productDataDetail]); // Sử dụng mảng dependency để theo dõi sự thay đổi của productDataDetail
+  
+  // console.log(productSizes); // In ra productSizes để kiểm tra kết quả
+  
   const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
-  const [selectedColorName, setSelectedColorName] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [showColors, setShowColors] = useState(true); // Hiển thị màu từ đầu
-  const [colorsForSelectedSize, setColorsForSelectedSize] = useState([]);
-  const [hasSelectedColor, setHasSelectedColor] = useState(false);
   const [mainImage, setMainImage] = useState(prodetailData?.images[0]);
-  const [selectedSizeColors, setSelectedSizeColors] = useState([]);
   const [remainingQuantity, setRemainingQuantity] = useState<number | null>(
     null
   );
   const [quantityError, setQuantityError] = useState(null);
-  const [errorDisplayed, setErrorDisplayed] = useState(false);
-  const [totalQuantityForSelectedSize, setTotalQuantityForSelectedSize] =
-    useState(null);
-  const [quantityForColorsInSelectedSize, setQuantityForColorsInSelectedSize] =
-    useState({});
+  // const [errorDisplayed, setErrorDisplayed] = useState(false);
+  const [totalQuantityForSelectedSize, setTotalQuantityForSelectedSize] = useState(null);
+  // const [quantityForColorsInSelectedSize, setQuantityForColorsInSelectedSize] = useState({});
   const [sizeError, setSizeError] = useState(null);
   const [isErrorVisible, setIsErrorVisible] = useState(false);
+
+  const [productdeID, setproductdeID] = useState();
+  
+  useEffect(() => {
+    if (selectedSize && productDataDetail) {
+      // Lọc ra các phần tử trong productDataDetail có size bằng selectedSize
+      const productsWithSelectedSize = productDataDetail.filter(
+        (detail: any) => detail.size === selectedSize
+      );
+  
+      // Lặp qua từng phần tử và log id của chúng
+      productsWithSelectedSize.forEach((product: any) => {
+        setproductdeID(product._id)
+        console.log("ID của sản phẩm có size", selectedSize, " là:", product._id);
+      });
+    }
+  }, [selectedSize, productDataDetail]);
+  
+  console.log(productdeID);
 
   useEffect(() => {
     if (selectedSize) {
       const totalQuantityForSize = productDataDetail
         ?.filter((detail: any) => detail?.size === selectedSize)
-        .reduce((total, detail: any) => total + detail.quantity, 0);
+        .reduce((total:any, detail: any) => total + detail.quantity, 0);
       setTotalQuantityForSelectedSize(totalQuantityForSize);
-
-      const detailsForSelectedSize = productDataDetail?.filter(
-        (detail: any) => detail?.size === selectedSize
-      );
-      const colorsForCurrentProduct = detailsForSelectedSize
-        .filter((detail: any) => detail?.product_id === prodetailData?._id)
-        .map((detail: any) => detail?.color);
-
-      setColorsForSelectedSize(colorsForCurrentProduct);
     }
-  }, [selectedSize, productDataDetail, prodetailData]);
+  }, [selectedSize, productDataDetail]);
 
   const handleThumbnailClick = (image: any) => {
     setMainImage(image);
   };
-  useEffect(() => {
-    if (selectedSize) {
-      // Lọc ra danh sách màu sắc cho kích thước đã chọn
-      const colorsForSize = productDataDetail
-        ?.filter((detail: any) => detail?.size === selectedSize)
-        .map((detail: any) => detail?.color);
-
-      // Tạo một đối tượng mới để lưu trữ số lượng còn lại của mỗi màu cho kích thước đã chọn
-      const quantityForColors = {};
-
-      // Tính toán số lượng còn lại cho mỗi màu
-      colorsForSize.forEach((color) => {
-        const totalQuantityForColor = productDataDetail
-          ?.filter(
-            (detail: any) =>
-              detail?.color === color && detail?.size === selectedSize
-          )
-          .reduce((total, detail: any) => total + detail.quantity, 0);
-        quantityForColors[color] = totalQuantityForColor;
-      });
-
-      setQuantityForColorsInSelectedSize(quantityForColors);
-    }
-  }, [selectedSize, productDataDetail]);
-
-  useEffect(() => {
-    if (productData && prodetailData && productDataDetail) {
-      const productDetailsForCurrentProduct = productDataDetail.filter(
-        (detail: any) => detail.product_id === prodetailData._id
-      );
-
-      const sizesForCurrentProduct = productDetailsForCurrentProduct.map(
-        (detail: any) => detail.size
-      );
-
-      const uniqueSizes = Array.from(new Set(sizesForCurrentProduct));
-
-      setProductSizes(uniqueSizes);
-    }
-  }, [productData, prodetailData, productDataDetail]);
 
   const handleSizeChange = (size: any) => {
     setSelectedSize(size);
-    setSelectedColor("");
-    setSelectedColorName("");
-    setHasSelectedColor(false);
-    setShowColors(true);
-
-    // Lọc ra danh sách màu sắc cho kích thước đã chọn
-    const colorsForSize = productDataDetail
-      ?.filter((detail: any) => detail?.size === size)
-      .map((detail: any) => detail?.color);
-
-    setSelectedSizeColors(colorsForSize);
-    setRemainingQuantity(calculateRemainingQuantity(selectedSize, size));
+    setRemainingQuantity(calculateRemainingQuantity(size));
   };
 
-  const handleColorChange = (color: any) => {
-    setSelectedColor(color);
-    const selectedColorDetail = productDataDetail?.find(
-      (detail: any) => detail?.color === color && detail?.size === selectedSize
-    );
-    if (selectedColorDetail) {
-      setSelectedColorName(selectedColorDetail?.color);
-    }
-    setHasSelectedColor(true);
-    setRemainingQuantity(calculateRemainingQuantity(selectedSize, color));
-  };
-  const calculateRemainingQuantity = (size, color) => {
-    // Tính toán số lượng còn lại dựa trên kích thước và màu đã chọn
-    const selectedSizeColorDetail = productDataDetail?.find(
-      (detail: any) => detail?.size === size && detail?.color === color
+  const calculateRemainingQuantity = (size:any) => {
+    const selectedSizeDetail = productDataDetail?.find(
+      (detail: any) => detail?.size === size
     );
 
-    return Math.max(selectedSizeColorDetail?.quantity || 0);
+    return Math.max(selectedSizeDetail?.quantity || 0);
   };
+
   useEffect(() => {
-    if (selectedSize || selectedColor) {
-      // Đặt lỗi về null khi kích thước hoặc màu sắc thay đổi
+    if (selectedSize) {
       setQuantityError(null);
     }
-  }, [selectedSize, selectedColor]);
+  }, [selectedSize]);
 
   useEffect(() => {
-    // Nếu không có lỗi và người dùng vừa chọn số lượng hợp lệ, ẩn thông báo lỗi
     if (!quantityError && isErrorVisible) {
       setIsErrorVisible(false);
     }
@@ -179,17 +133,11 @@ const ProductDetail = () => {
   const handleQuantityChange = (event: any) => {
     const newQuantity = parseInt(event.target.value, 10);
     if (!isNaN(newQuantity) && newQuantity >= 1) {
-      // Ẩn thông báo khi người dùng chọn số lượng hợp lệ
       setQuantityError("");
       setQuantity(newQuantity);
-
-      // Đặt trạng thái hiển thị lỗi về false
       setIsErrorVisible(false);
     } else {
-      // Hiển thị thông báo lỗi nếu số lượng không hợp lệ
       setQuantityError("Số lượng không hợp lệ");
-
-      // Đặt trạng thái hiển thị lỗi về true
       setIsErrorVisible(true);
     }
   };
@@ -208,14 +156,19 @@ const ProductDetail = () => {
   const [addCart] = useCreateCartMutation();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
+  // Tìm productDataDetail có size trùng với size của cartItem
+  // const matchedProduct = productDataDetail.find((item:any) => item.size === selectedSize);
+
+  
+
   const onSubmitCart = async () => {
     if (profileUser) {
       if (!isAddingToCart) {
-        if (!selectedSize || !selectedColor) {
+        if (!selectedSize) {
           messageApi.error({
             type: "error",
             content:
-              "Vui lòng loại trước khi thêm vào giỏ hàng !!!",
+              "Vui lòng chọn kích cỡ trước khi thêm vào giỏ hàng !!!",
             className: "custom-class",
             style: {
               margin: "10px",
@@ -226,10 +179,7 @@ const ProductDetail = () => {
           return;
         }
         if (quantity > remainingQuantity) {
-          // Đặt lỗi về null khi kích thước thay đổi
           setSizeError(null);
-
-          // Hiển thị thông báo lỗi khi số lượng lớn hơn số sản phẩm còn lại
           setQuantityError(
             `Chỉ còn ${remainingQuantity} sản phẩm. Vui lòng chọn số lượng nhỏ hơn hoặc bằng.`
           );
@@ -241,35 +191,24 @@ const ProductDetail = () => {
         }
 
         setIsAddingToCart(true);
-        const filteredProducts = productDataDetail?.map(async (product) => {
-          if (
-            typeof product?.size === "number" &&
-            product?.size === selectedSize &&
-            product?.color === selectedColor
-          ) {
-            const cartItem = {
-              product_id: product._id,
-              user_id: profileUser,
-              quantity: quantity,
-            };
-            console.log(cartItem);
-            const result = await addCart(cartItem);
-            const successMessage = `Thêm sản phẩm vào trong giỏ hàng thành công 🎉🎉🎉`;
-            messageApi.success({
-              type: "success",
-              content: successMessage,
-              className: "custom-class",
-              style: {
-                margin: "10px",
-                fontSize: "20px",
-                lineHeight: "30px",
-              },
-            });
-            return result;
-          }
+        const cartItem = {
+          product_id: prodetailData._id,
+          deIDproduct: productdeID,
+          user_id: profileUser,
+          quantity: quantity,
+        };
+        const result = await addCart(cartItem);
+        const successMessage = `Thêm sản phẩm vào trong giỏ hàng thành công 🎉🎉🎉`;
+        messageApi.success({
+          type: "success",
+          content: successMessage,
+          className: "custom-class",
+          style: {
+            margin: "10px",
+            fontSize: "20px",
+            lineHeight: "30px",
+          },
         });
-
-        await Promise.all(filteredProducts);
         setIsAddingToCart(false);
       }
     } else {
@@ -292,14 +231,7 @@ const ProductDetail = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const uniqueColors = new Set();
 
-  // Lặp qua productDataDetail để thêm các màu sắc vào tập hợp
-  productDataDetail?.forEach((detail: any) => {
-    if (detail.product_id === prodetailData?._id) {
-      uniqueColors.add(detail.color);
-    }
-  });
   if (isLoading) {
     return (
       <div>
@@ -312,6 +244,7 @@ const ProductDetail = () => {
       </div>
     );
   }
+
   return (
     <div>
       <div className="product_image_area">
@@ -440,17 +373,6 @@ const ProductDetail = () => {
                           ? totalQuantityForSelectedSize
                           : "Loading..."
                         }`}
-
-                      {selectedSize && (
-                        <ul>
-                          {Object.entries(quantityForColorsInSelectedSize).map(
-                            ([color, quantity]) => (
-                              <li key={color}>{`${color}: ${quantity !== null ? quantity : "Loading..."
-                                }`}</li>
-                            )
-                          )}
-                        </ul>
-                      )}
                       {quantityError && (
                         <Alert type="error" message={quantityError} showIcon />
                       )}
@@ -507,7 +429,7 @@ const ProductDetail = () => {
           </TabPane>
         </Tabs>
         <ProductLienQuan />
-        <ProductSale />
+        {/* <ProductSale /> */}
       </div>
       <div></div>
     </div>

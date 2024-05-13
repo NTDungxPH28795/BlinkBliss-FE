@@ -47,13 +47,10 @@ const Index = () => {
     productDTData?.filter((item) => item.product_id === itemm._id);
   let filteredDataDT = dataDTToRender;
   let filteredData: any = dataSourceToRender;
-  let setColor = [dataDTToRender?.map((item: any) => item.color)];
-  let color = [...new Set(setColor[0])];
   let setSize = [dataDTToRender?.map((item: any) => item.size)];
   let Size = [...new Set(setSize[0])];
 
   const [role, setRole] = useState('');
-  const [hehe, setHehe] = useState('color');
   const [huhu, setHuhu] = useState('size');
 
   const handleSubmit = (event: any) => {
@@ -62,18 +59,15 @@ const Index = () => {
     filteredData = filteredData.filter(
       (itemm: any) =>
         itemm.brand_id == role &&
-        DTData(itemm)?.find((itemd) => itemd.color == hehe) &&
         DTData(itemm)?.find((itemd: any) => itemd.size == huhu)
     );
     if (filteredData.length > 1) {
       setDataSourceToRender(filteredData);
-    }
-    else {
+    } else {
       filteredData = searchResult;
       filteredData = filteredData.filter(
         (itemm: any) =>
           itemm.brand_id == role &&
-          DTData(itemm)?.find((itemd) => itemd.color == hehe) &&
           DTData(itemm)?.find((itemd: any) => itemd.size == huhu)
       );
       setDataSourceToRender(filteredData);
@@ -84,7 +78,6 @@ const Index = () => {
       filteredData = searchResult;
       setDataSourceToRender(filteredData);
       setRole('Thương hiệu');
-      setHehe('Màu sắc');
       setHuhu('Kích cỡ');
     }
   };
@@ -93,8 +86,7 @@ const Index = () => {
     filteredData = filteredData.filter(
       (itemm: any) =>
         itemm.brand_id == value ||
-        DTData(itemm)?.find((itemd) => itemd.color == value) ||
-        DTData(itemm)?.find((itemd) => itemd.size == value)
+        DTData(itemm)?.find((itemd: any) => itemd.size == value)
     );
     if (filteredData.length > 1) {
     } else {
@@ -102,8 +94,7 @@ const Index = () => {
       filteredData = filteredData.filter(
         (itemm: any) =>
           itemm.brand_id == value ||
-          DTData(itemm)?.find((itemd) => itemd.color == value) ||
-          DTData(itemm)?.find((itemd) => itemd.size == value)
+          DTData(itemm)?.find((itemd: any) => itemd.size == value)
       );
     }
 
@@ -120,17 +111,15 @@ const Index = () => {
       );
       setDataDTToRender(filteredDataDT);
     }
-
   };
-
 
   const handleReset = () => {
     filteredData = searchResult;
     setDataSourceToRender(filteredData);
     setRole('Thương hiệu');
-    setHehe('Màu sắc');
     setHuhu('Kích cỡ');
-  }
+  };
+
   if (isLoading) {
     return (
       <div>
@@ -175,23 +164,6 @@ const Index = () => {
                       })}
                     </select>
                     <select
-                      id="hehe"
-                      name="hehe"
-                      value={hehe}
-                      className="form-select-product"
-                      onChange={(e) => {
-                        setHehe(e.target.value)
-                          , onHandleClick(e.target.value)
-                      }}
-                    >
-                      <option selected >
-                        Màu sắc
-                      </option>
-                      {color?.map((item) => {
-                        return <option value={item}>{item}</option>;
-                      })}
-                    </select>
-                    <select
                       id="huhu"
                       name="huhu"
                       value={huhu}
@@ -208,7 +180,6 @@ const Index = () => {
                         return <option value={item}>{item}</option>;
                       })}
                     </select>
-
 
                     <button type="submit" className="btn btn-primary">Lọc</button>
                     <button onClick={handleReset} type="button" className="btn btn-info mx-3">Reset</button>
@@ -243,11 +214,6 @@ const Index = () => {
                           />
                         </div>
                         <div className="bg-white content-product w-100 p-2">
-                          <div className="product-detail px-3 row ">
-                            <div className="col-12 row px-2">
-                              <div className="col-1 m-1 product-color color-1" />
-                            </div>
-                          </div>
                           <div className="product-vendor">{brandName}</div>
                           <h4 className="product-name ellipsis">{item.name}</h4>
                           {item.price_sale > 0 ? (

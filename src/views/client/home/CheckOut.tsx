@@ -103,7 +103,7 @@ const CheckOut = () => {
                 price: price,
                 price_sale: price_sale,
                 quantity: quantity,
-                total: price_sale * quantity,
+                total: price * quantity,
                 status: status,
                 cart_id: cart_id,
               };
@@ -171,37 +171,42 @@ const CheckOut = () => {
     }
   };
 
-  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCityCode = event.target.value;
-    setSelectedCity(selectedCityCode);
-    callApiDistrict(selectedCityCode);
-    setSelectedDistrict('');
-    setSelectedWard('');
-    setSelectedAddress('');
-    printResult();
+  // const handleCityChange = async (event) => {
+  //   const selectedCityCode = event.target.value;
+  //   setSelectedCity(selectedCityCode);
+  //   setSelectedDistrict("");
+  //   setSelectedWard("");
+  //   setSelectedAddress("");
+    
+  //   try {
+  //     const response = await axios.get(`${host}p/${selectedCityCode}?depth=2`);
+  //     setDistricts(response.data.districts);
+  //   } catch (error) {
+  //     console.error('Error fetching districts:', error);
+  //   }
+  // };
+  
+  // const handleDistrictChange = async (event) => {
+  //   const selectedDistrictCode = event.target.value;
+  //   setSelectedDistrict(selectedDistrictCode);
+  //   setSelectedWard("");
+    
+  //   try {
+  //     const response = await axios.get(`${host}d/${selectedDistrictCode}?depth=2`);
+  //     setWards(response.data.wards);
+  //   } catch (error) {
+  //     console.error('Error fetching wards:', error);
+  //   }
+  // };
+  
+  // const handleWardChange = (event) => {
+  //   setSelectedWard(event.target.value);
+  // };
+  
+  const handleWardAddress = (event) => {
+    setSelectedAddress(event.target.value);
   };
-
-  const handleDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedDistrictCode = event.target.value;
-    setSelectedDistrict(selectedDistrictCode);
-    callApiWard(selectedDistrictCode);
-    setSelectedWard('');
-    setSelectedAddress('');
-    printResult();
-  };
-
-  const handleWardChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedWardCode = event.target.value;
-    setSelectedWard(selectedWardCode);
-    setSelectedAddress('');
-    printResult();
-  };
-
-  const handleWardAddress = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedWardCodeadd = event.target.value;
-    setSelectedAddress(selectedWardCodeadd);
-    printResult();
-  };
+  
 
 
   const printResult = () => {
@@ -219,6 +224,51 @@ const CheckOut = () => {
   const address =
     `${foundItem?.name} , ${foundItem1?.name} , ${foundItem2?.name} , ${selectedAdd}`;
   // console.log("adress : ", address);
+  // 
+
+
+  useEffect(() => {
+    // Fetch data from API and set initial values for cities
+    fetch("https://vnprovinces.pythonanywhere.com/api/provinces/?basic=true&limit=100")
+      .then((response) => response.json())
+      .then((data) => setCities(data.results))
+      .catch((error) => console.error("Error fetching cities:", error));
+  }, []);
+
+  const handleCityChange = (e) => {
+    setSelectedCity(e.target.value);
+    setSelectedDistrict("");
+    setSelectedWard("");
+    console.log(e.target.value)
+    // Fetch data for districts based on selected city
+    fetch(`https://vnprovinces.pythonanywhere.com/api/provinces/?name=${e.target.value}`)
+      .then((response) => response.json())
+      .then((data) => setDistricts(data.results[0].districts))
+      .catch((error) => console.error("Error fetching districts:", error));
+  };
+
+  
+
+  const handleDistrictChange = (e) => {
+    setSelectedDistrict(e.target.value);
+    setSelectedWard("");
+    // Fetch data for wards based on selected district
+    fetch(`https://vnprovinces.pythonanywhere.com/api/provinces/?name=${e.target.value}`)
+      .then((response) => response.json())
+      .then((data) => setWards(data.results[0].wards))
+      .catch((error) => console.error("Error fetching wards:", error));
+  };
+
+  const handleWardChange = (e) => {
+    setSelectedWard(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here, you can access selectedCity, selectedDistrict, selectedWard, and selectedAdd
+  };
+
+  // 
   // 
 
 
@@ -752,7 +802,7 @@ const CheckOut = () => {
                     <th scope="col">Hình Ảnh</th>
                     <th scope="col">| Tên Sản Phẩm</th>
                     <th scope="col">| Kích Cỡ</th>
-                    <th scope="col">| Màu Sắc</th>
+                    {/* <th scope="col">| Màu Sắc</th> */}
                     <th scope="col">| Số Lượng</th>
                     <th scope="col">| Giá</th>
                     <th scope="col">| Tạm Tính</th>
@@ -773,7 +823,7 @@ const CheckOut = () => {
                       <td style={{ width: "100px", textAlign: "center" }}>
                         <h5>{item?.size}</h5>
                       </td>
-                      <td style={{ width: "100px" }}>
+                      {/* <td style={{ width: "100px" }}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                           <button
                             style={{
@@ -785,13 +835,13 @@ const CheckOut = () => {
                           ></button>
                           <h5>{item?.color}</h5>
                         </div>
-                      </td>
+                      </td> */}
                       <td style={{ width: "100px", textAlign: "center" }}>
                         <h5>{item?.quantity}</h5>
                       </td>
                       <td style={{ width: "100px" }}>
                         <h5>
-                          {item?.price_sale?.toLocaleString("vi-VN", {
+                          {item?.price?.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",
                           })}
