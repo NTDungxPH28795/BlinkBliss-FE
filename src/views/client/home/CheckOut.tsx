@@ -177,7 +177,7 @@ const CheckOut = () => {
   //   setSelectedDistrict("");
   //   setSelectedWard("");
   //   setSelectedAddress("");
-    
+
   //   try {
   //     const response = await axios.get(`${host}p/${selectedCityCode}?depth=2`);
   //     setDistricts(response.data.districts);
@@ -185,12 +185,12 @@ const CheckOut = () => {
   //     console.error('Error fetching districts:', error);
   //   }
   // };
-  
+
   // const handleDistrictChange = async (event) => {
   //   const selectedDistrictCode = event.target.value;
   //   setSelectedDistrict(selectedDistrictCode);
   //   setSelectedWard("");
-    
+
   //   try {
   //     const response = await axios.get(`${host}d/${selectedDistrictCode}?depth=2`);
   //     setWards(response.data.wards);
@@ -198,15 +198,15 @@ const CheckOut = () => {
   //     console.error('Error fetching wards:', error);
   //   }
   // };
-  
+
   // const handleWardChange = (event) => {
   //   setSelectedWard(event.target.value);
   // };
-  
+
   const handleWardAddress = (event) => {
     setSelectedAddress(event.target.value);
   };
-  
+
 
 
   const printResult = () => {
@@ -247,7 +247,7 @@ const CheckOut = () => {
       .catch((error) => console.error("Error fetching districts:", error));
   };
 
-  
+
 
   const handleDistrictChange = (e) => {
     setSelectedDistrict(e.target.value);
