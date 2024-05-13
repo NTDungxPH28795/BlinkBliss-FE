@@ -9,7 +9,7 @@ import {
   useGetProductDetailQuery,
 } from "../../../services/productDetail.service";
 import { useGetProductsQuery } from "../../../services/product.service";
-import { Button, Popconfirm, notification,message } from "antd";
+import { Button, Popconfirm, notification, message } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { message as messageApi } from "antd";
 import { useForm } from "react-hook-form";
@@ -184,7 +184,7 @@ const Cart = () => {
         idCartDetail: editingProduct?.idCartDetail,
         quantity: watch("quantity"),
       };
-  
+
       if (parseInt(editedProduct.quantity, 10) > editingProduct?.quantityInStock) {
         // Hiển thị thông báo lỗi nếu số lượng mới vượt quá số lượng còn lại
         message.warning("Số lượng trong kho đã hết :)).");
@@ -192,7 +192,7 @@ const Cart = () => {
         // Tiến hành cập nhật giỏ hàng
         await onSubmit(editedProduct);
       }
-  
+
       setConfirmLoading(false);
       setOpen(false);
     } catch (error) {
@@ -200,9 +200,9 @@ const Cart = () => {
       setConfirmLoading(false);
     }
   };
-  
-  
-  
+
+
+
 
   const handleCancel = () => {
     setOpen(false);
@@ -270,7 +270,7 @@ const Cart = () => {
   // console.log(matchingProduct)
   const onSubmit = async (cartUs: any) => {
     if (matchingProduct) {
-      const productQuantities: { [productId: string]: number } = {}; 
+      const productQuantities: { [productId: string]: number } = {};
       const productId = matchingProduct.product_id;
       const newQuantity = parseInt(watch("quantity"), 10);
 
@@ -395,7 +395,7 @@ const Cart = () => {
                             ></button>
                           </div>
                         </div> */}
-                            <h5>{item?.color}</h5>
+                        <h5>{item?.color}</h5>
                       </td>
                       <td>
                         <h5>{item.quantity}</h5>
