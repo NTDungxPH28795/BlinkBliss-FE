@@ -2,8 +2,6 @@ const Blog = () => {
     return (
         <div>
 
-<<<<<<< HEAD
-=======
             <section className="blog_categorie_area">
                 <div className="container">
                     <div className="row">
@@ -403,7 +401,6 @@ const Blog = () => {
                 </div>
             </section>
 
->>>>>>> origin/main
         </div>
     )
 
