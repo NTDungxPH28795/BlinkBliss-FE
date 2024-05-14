@@ -58,8 +58,8 @@ const OrderDetails: React.FC<{ roleMane: any }> = ({ roleMane }) => {
                             </tr>
                         ) : null}
                     </tbody>
-                </table>
-            </div>
+                </table >
+            </div >
             <div>
                 <table className="table table-striped">
                     <thead>
@@ -112,7 +112,7 @@ const OrderDetails: React.FC<{ roleMane: any }> = ({ roleMane }) => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 

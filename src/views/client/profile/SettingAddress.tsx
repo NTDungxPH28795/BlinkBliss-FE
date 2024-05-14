@@ -63,7 +63,7 @@ const SettingAddress = () => {
               <div className="form-group focused">
                 <label className="form-control-label" htmlFor="input-address">
                   Địa chỉ
-                </label>
+                </label >
                 <input
                   id="input-address"
                   className="form-control form-control-alternative l text-black"
@@ -71,13 +71,14 @@ const SettingAddress = () => {
                   defaultValue={addre}
                   readOnly
                 />
-              </div>
-            </div>
-          </div>
+              </div >
+            </div >
+          </div >
           <MyComponent />
-        </div>
-      )}
-    </div>
+        </div >
+      )
+      }
+    </div >
   );
 };
 

@@ -39,27 +39,27 @@ const ProductDetail = () => {
   const { data: prodetailData } = useGetProductByIdQuery(_id);
 
   // console.log(prodetailData);
-  
+
 
   const brandName = brandData?.find(
     (brand) => brand._id === prodetailData?.brand_id
   )?.name;
   const { data: productDataDetail, isLoading } = useGetAllsProductsDetailQuery(_id);
 
-// console.log(productDataDetail);
+  // console.log(productDataDetail);
 
   const [productSizes, setProductSizes] = useState([]);
   useEffect(() => {
     if (productDataDetail) {
       // Kiểm tra xem productDataDetail có tồn tại và không rỗng
       // Lấy giá trị của size từ productDataDetail và gán vào productSizes
-      const sizes = productDataDetail.map((product:any) => product.size);
+      const sizes = productDataDetail.map((product: any) => product.size);
       setProductSizes(sizes);
     }
   }, [productDataDetail]); // Sử dụng mảng dependency để theo dõi sự thay đổi của productDataDetail
-  
+
   // console.log(productSizes); // In ra productSizes để kiểm tra kết quả
-  
+
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState(prodetailData?.images[0]);
@@ -74,14 +74,14 @@ const ProductDetail = () => {
   const [isErrorVisible, setIsErrorVisible] = useState(false);
 
   const [productdeID, setproductdeID] = useState();
-  
+
   useEffect(() => {
     if (selectedSize && productDataDetail) {
       // Lọc ra các phần tử trong productDataDetail có size bằng selectedSize
       const productsWithSelectedSize = productDataDetail.filter(
         (detail: any) => detail.size === selectedSize
       );
-  
+
       // Lặp qua từng phần tử và log id của chúng
       productsWithSelectedSize.forEach((product: any) => {
         setproductdeID(product._id)
@@ -89,14 +89,14 @@ const ProductDetail = () => {
       });
     }
   }, [selectedSize, productDataDetail]);
-  
+
   console.log(productdeID);
 
   useEffect(() => {
     if (selectedSize) {
       const totalQuantityForSize = productDataDetail
         ?.filter((detail: any) => detail?.size === selectedSize)
-        .reduce((total:any, detail: any) => total + detail.quantity, 0);
+        .reduce((total: any, detail: any) => total + detail.quantity, 0);
       setTotalQuantityForSelectedSize(totalQuantityForSize);
     }
   }, [selectedSize, productDataDetail]);
@@ -110,7 +110,7 @@ const ProductDetail = () => {
     setRemainingQuantity(calculateRemainingQuantity(size));
   };
 
-  const calculateRemainingQuantity = (size:any) => {
+  const calculateRemainingQuantity = (size: any) => {
     const selectedSizeDetail = productDataDetail?.find(
       (detail: any) => detail?.size === size
     );
@@ -159,7 +159,7 @@ const ProductDetail = () => {
   // Tìm productDataDetail có size trùng với size của cartItem
   // const matchedProduct = productDataDetail.find((item:any) => item.size === selectedSize);
 
-  
+
 
   const onSubmitCart = async () => {
     if (profileUser) {
@@ -364,7 +364,7 @@ const ProductDetail = () => {
                       </button>
                     ))}
                   </div>
-                  
+
                   {/* <div className="remaining-quantity mt-3">
                     <p>
                       {selectedSize &&
