@@ -63,11 +63,6 @@ const Purchase: React.FC = () => {
     undefined
   );
 
-  // const handleFullNameSearchChange = (value: string) => {
-  //     setSearchFullName(value.toLowerCase());
-  // };
-  // console.log(dateCreateArray);
-
   const nonSuccessfulOrder = orderDa?.map((order: any, index: number) => {
     const date = new Date(order?.dateCreate)?.toLocaleDateString("en-US");
     const totals = order.products.reduce(

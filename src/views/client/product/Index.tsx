@@ -24,6 +24,8 @@ const Index = () => {
       }));
 
       // Ẩn các sản phẩm có trạng thái false
+      // Ẩn các sản phẩm có trạng thái false
+
       const visibleProducts: any = updatedDataSource.filter(
         (product) => product.status
       );

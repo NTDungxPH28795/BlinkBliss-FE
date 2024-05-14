@@ -6,7 +6,7 @@ import { useFetchOneUserQuery } from "../../../services/user.service";
 import { Link } from "react-router-dom";
 
 // console.log(profileUser)
-
+// Profile view
 const Profile = () => {
   const profileUser = JSON.parse(localStorage.getItem("user")!);
   const idUs = profileUser?.user;

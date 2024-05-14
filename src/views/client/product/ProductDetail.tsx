@@ -38,7 +38,7 @@ const ProductDetail = () => {
   const { _id } = useParams();
   const { data: prodetailData } = useGetProductByIdQuery(_id);
 
-  // console.log(prodetailData);
+  console.log(prodetailData);
 
 
   const brandName = brandData?.find(
@@ -46,7 +46,7 @@ const ProductDetail = () => {
   )?.name;
   const { data: productDataDetail, isLoading } = useGetAllsProductsDetailQuery(_id);
 
-  // console.log(productDataDetail);
+  console.log(productDataDetail);
 
   const [productSizes, setProductSizes] = useState([]);
   useEffect(() => {

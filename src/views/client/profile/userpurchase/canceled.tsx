@@ -25,7 +25,7 @@ const Abortorder: React.FC = () => {
         setRoleMane(productToEdit)
         showModal();
     };
-    // console.log(roleMane)
+    console.log(roleMane)
     // bảng dữ liệu
     const [searchFullName, setSearchFullName] = useState<string | undefined>(undefined);
     const nonSuccessfulOrder = orderDa?.map((order: any, index) => {
@@ -50,7 +50,8 @@ const Abortorder: React.FC = () => {
         ?.sort((a, b) => new Date(b.dateCreate).getTime() - new Date(a.dateCreate).getTime())
         ?.map((order, index) => ({ ...order, index: index + 1 }));
 
-    console.log(successfulOrders)
+    // console.log(successfulOrders)
+    // loading
     if (isLoading) {
         return <div>
             <div className="right-wrapper">

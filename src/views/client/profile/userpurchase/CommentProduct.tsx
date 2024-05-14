@@ -72,8 +72,8 @@ const CommentProduct: React.FC<{ roleCmt: roleCmtType }> = ({ roleCmt }) => {
         });
 
         if (response.data) {
-            const newComment = response.data; // Assuming the mutation returns the new comment
-            setDataSourceToRender(prevData => [newComment, ...prevData]); // Add the new comment to the beginning
+            const newComment = response.data;
+            setDataSourceToRender(prevData => [newComment, ...prevData]);
             setValue("content", "");
             setValue("rate", "");
         }
@@ -84,6 +84,7 @@ const CommentProduct: React.FC<{ roleCmt: roleCmtType }> = ({ roleCmt }) => {
     };
 
     return (
+        // đánh giá 
         <div className='col-11 my-5'>
             <form onSubmit={handleSubmit(onHandleSubmit)} className="form-floating">
 

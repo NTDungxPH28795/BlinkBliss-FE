@@ -48,6 +48,7 @@ const Transport: React.FC = () => {
             totals,
         };
     });
+    // searchReult
     // console.log(searchResult)
 
     const nonSuccessfulOrders = nonSuccessfulOrder

@@ -3,6 +3,7 @@ import TopUserPurchase from '../../../components/main/TopUserPurchase';
 import { Outlet } from 'react-router-dom';
 
 const OrderReview = () => {
+  // view order
   return (
     <div>
       <section className="our-team position-relative">

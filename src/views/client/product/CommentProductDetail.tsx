@@ -20,7 +20,7 @@ interface DataType {
     createdAt: string;
     images: [];
 }
-
+//CommentProductDetail
 const CommentProductDetail = () => {
 
     const [dataSourceToRender, setDataSourceToRender] = useState<DataType[]>([]);

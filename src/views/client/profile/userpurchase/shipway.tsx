@@ -77,7 +77,6 @@ const Shipway: React.FC = () => {
                 await updateCheck(updatedData).unwrap();
             } else if (values.status === 'Hủy đơn hàng') {
                 setIsModalOpen(true);
-                // await updateCheck(updatedData).unwrap();
             } else {
                 messageApi.success({
                     type: 'error',
