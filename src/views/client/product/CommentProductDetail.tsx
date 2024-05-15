@@ -8,7 +8,7 @@ import { useFetchUserQuery } from "../../../services/user.service";
 import {
     useFetchCommentQuery,
 } from "../../../services/comment.service";
-import { Rate } from "antd";
+import { Rate} from "antd";
 import { format } from "date-fns";
 
 interface DataType {
@@ -20,7 +20,7 @@ interface DataType {
     createdAt: string;
     images: [];
 }
-//CommentProductDetail
+
 const CommentProductDetail = () => {
 
     const [dataSourceToRender, setDataSourceToRender] = useState<DataType[]>([]);

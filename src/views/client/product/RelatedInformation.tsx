@@ -10,10 +10,10 @@ const RelatedInformation = () => {
             <div>
                 <h3>Mô tả sản phẩm</h3>
                 <p className="description-product">
-                    {prodetailData?.content}
+                    <div dangerouslySetInnerHTML={{ __html: prodetailData?.content }} />
                 </p>
             </div>
-            <div>
+            {/* <div>
                 <h4>Hướng dẫn chọn size</h4>
                 <img src="https://cdn.mykiot.vn/2021/09/16319496925f368bd760f3ec6e24bbfa6bc4f42573.png" alt="" />
             </div>
@@ -31,7 +31,7 @@ const RelatedInformation = () => {
                     Không sử dụng bàn chải quá cứng để vệ sinh giày, để tránh ảnh hưởng đến chất lượng của giày. <br />
                     Tránh đi mưa ngâm nước lâu và không phơi giày trực tiếp dưới ánh nắng mặt trời mạnh.
                 </p>
-            </div>
+            </div> */}
             <div></div>
         </div>
     )

@@ -53,7 +53,8 @@ const Index = () => {
     }
   }, [productDTData]);
 
-  const updateProductStatus = (productId: string, status: boolean) => {  // Lưu trạng thái sản phẩm vào localStorage khi nó thay đổi
+  // Lưu trạng thái sản phẩm vào localStorage khi nó thay đổi
+  const updateProductStatus = (productId: string, status: boolean) => {
     const productStatusString = localStorage.getItem("productStatus");
     const productStatus: Record<string, boolean> = productStatusString
       ? JSON.parse(productStatusString)

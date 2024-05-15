@@ -8,6 +8,8 @@ import {
   useGetProductByIdQuery,
   useUpdateProductMutation,
 } from "../../../services/product.service";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const { Option } = Select;
 
@@ -22,16 +24,19 @@ type FieldType = {
 };
 
 const ProductEdit: React.FC = () => {
-  const [previewImage, setPreviewImage] = useState(null);
   const { control, handleSubmit, setValue, register } = useForm<FieldType>();
   const [updateProduct] = useUpdateProductMutation();
   const { idProduct } = useParams<{ idProduct: string }>();
   const { data: productData } = useGetProductByIdQuery(idProduct || "");
   const navigate = useNavigate();
+  console.log(productData)
 
   const [selectedImages, setSelectedImages] = useState<string[]>(
     productData?.images || []
   );
+
+  console.log(selectedImages)
+
 
   useEffect(() => {
     if (productData) {
@@ -39,18 +44,9 @@ const ProductEdit: React.FC = () => {
         setValue(key as keyof FieldType, productData[key]);
       });
       console.log("Product Images:", productData?.images);
+      setSelectedImages(productData?.images)
     }
   }, [productData, setValue]);
-  const handleImagechange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setPreviewImage(reader.result);
-        };
-        reader.readAsDataURL(file);
-    }
-};
 
   const handleImageChange = async (file: File) => {
     try {
@@ -82,6 +78,24 @@ const ProductEdit: React.FC = () => {
     );
   };
 
+  // description
+  const [description1, setDescription] = useState(""); 
+  useEffect(() => {
+    if (productData && productData.description) {
+      setDescription(productData.description);
+    }
+  }, [productData]);
+
+  // description
+  const [content1 , setContent] = useState(""); 
+  useEffect(() => {
+    if (productData && productData.content) {
+      setContent(productData.content);
+    }
+  }, [productData]);
+
+  // console.log(content1);
+
   const onSubmit: SubmitHandler<FieldType> = async (data) => {
     try {
       console.log("Images before update:", selectedImages);
@@ -108,7 +122,7 @@ const ProductEdit: React.FC = () => {
         })
       );
 
-      const updatedValues = { ...data, images: newImageUrls };
+      const updatedValues = { ...data, images: newImageUrls , description:description1 , content:content1 };
       await updateProduct({ ...updatedValues, _id: idProduct }).unwrap();
 
       notification.success({
@@ -158,7 +172,6 @@ const ProductEdit: React.FC = () => {
                     )}
                   />
                 </div>
-
                 <div className="form-group col-md-6 col-sm-12">
                   <label>Giá niêm yết</label>
                   <input
@@ -197,24 +210,47 @@ const ProductEdit: React.FC = () => {
                     </div>
                   </Upload>
                 </div>
-
-                <div className="form-group">
-                  <label>Mô tả sản phẩm</label>
-                  <textarea
-                    {...register("description", { required: true })}
-                    className={`form-control`}
+                <div className="App">
+                  <label>Mô tả ngắn</label>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={description1} // Sử dụng giá trị của state "description"
+                    onReady={(editor) => {
+                      // console.log("Editor is ready to use!", editor);
+                    }}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setDescription(data); 
+                    }} 
+                    onBlur={(event, editor) => {
+                      // console.log("Blur.", editor);
+                    }}
+                    onFocus={(event, editor) => {
+                      // console.log("Focus.", editor);
+                    }}
                   />
                 </div>
 
-                <div className="form-group">
-                  <label>Nội dung</label>
-                  <textarea
-                    {...register("content", { required: true })}
-                    className={`form-control`}
+                <div className="App">
+                <label>Nội dung</label>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={content1}
+                    onReady={(editor) => {
+                      // console.log("Editor is ready to use!", editor);
+                    }}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setContent(data); 
+                    }} 
+                    onBlur={(event, editor) => {
+                      // console.log("Blur.", editor);
+                    }}
+                    onFocus={(event, editor) => {
+                      // console.log("Focus.", editor);
+                    }}
                   />
                 </div>
-
-                
 
                 <div className="form-group">
                   <Space>

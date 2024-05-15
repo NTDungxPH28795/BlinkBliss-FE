@@ -83,7 +83,7 @@ const ProductView = () => {
         images: product.images,
         price: product.price,
         price_sale: product.price_sale,
-        description: product.description,
+        description: product.description ,
         content: product.content,
         status: product.status,
       }));
@@ -91,6 +91,7 @@ const ProductView = () => {
       setDataSource(updatedDataSource);
     }
   };
+
 
   const [selectedProduct, setSelectedProduct] = useState<DataType | null>(null);
 
@@ -214,16 +215,16 @@ const ProductView = () => {
         </span>
       ),
     },
-    // {
-    //     title: 'Mô tả sản phẩm',
-    //     dataIndex: 'description',
-    //     key: 'description',
-    // },
-    // {
-    //   title: "Nội dung sản phẩm",
-    //   dataIndex: "description",
-    //   key: "description",
-    // },
+    {
+      title: 'Mô tả ngắn',
+      dataIndex: 'description',
+      key: 'description',
+      render: (description, record) => (
+        <span>
+          <div dangerouslySetInnerHTML={{ __html: description }} />
+        </span>
+      ),
+    },
     {
       title: "Trạng thái",
       dataIndex: "status",
@@ -272,7 +273,7 @@ const ProductView = () => {
                     minWidth: "4em",
                   }}
                 >
-                  <i className="ti ti-edit m-1"></i> Chi tiết
+                  <i className="ti ti-edit m-1"></i> Sửa
                 </Button>
               </Link>
               <Link to={`detail/${id}`}>
@@ -353,7 +354,7 @@ const ProductView = () => {
                   columns={columns}
                   expandable={{
                     expandedRowRender: (record: any) => (
-                      <p style={{ margin: 0 }}>{record.content}</p>
+                      <p style={{ margin: 0 }}><div dangerouslySetInnerHTML={{ __html: record.content }} /></p>
                     ),
                     rowExpandable: (record: any) =>
                       record.firstName !== "Not Expandable",

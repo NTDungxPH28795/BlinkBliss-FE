@@ -3,6 +3,7 @@ import React from 'react'
 
 const Banner = () => {
 
+
     return (
         <div>
             <section className="hero-banner position-relative">
@@ -50,10 +51,9 @@ const Banner = () => {
                         </div>
                     </div>
                 </div>
-            </section >
-        </div >
+            </section>
+        </div>
     )
 }
-
 
 export default Banner

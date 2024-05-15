@@ -38,15 +38,8 @@ const CheckOut = () => {
   const [voucherStatus, setVoucherStatus] = useState({});
   // 
 
-  // console.log(voucherStatus)
+  console.log(voucherStatus)
 
-  // useEffect(() => {
-  //   if (allVouchersData) {
-  //     // setAllVouchers(allVouchersData);
-
-  //     setVoucherStatus(allVouchersData)
-  //   }
-  // }, [allVouchersData]);
   useEffect(() => {
     if (allVouchersData) {
       const activeVouchers = allVouchersData.filter((voucher) => voucher.status === true);
@@ -54,9 +47,6 @@ const CheckOut = () => {
     }
   }, [allVouchersData]);
 
-  // //////////
-  // console.log(voucherStatus)
-  // console.log(allVouchers)
 
   useEffect(() => {
     if (cartUser && ProductDetailUser) {
@@ -103,7 +93,7 @@ const CheckOut = () => {
                 price: price,
                 price_sale: price_sale,
                 quantity: quantity,
-                total: price * quantity,
+                total: item.price_var * quantity,
                 status: status,
                 cart_id: cart_id,
               };
@@ -129,6 +119,7 @@ const CheckOut = () => {
     console.error("Lỗi khi truy vấn mã khuyến mãi:", error);
   }
 
+  // 
   // 
   const host = 'https://provinces.open-api.vn/api/';
   const [cities, setCities] = useState([]);
@@ -171,42 +162,10 @@ const CheckOut = () => {
     }
   };
 
-  // const handleCityChange = async (event) => {
-  //   const selectedCityCode = event.target.value;
-  //   setSelectedCity(selectedCityCode);
-  //   setSelectedDistrict("");
-  //   setSelectedWard("");
-  //   setSelectedAddress("");
-
-  //   try {
-  //     const response = await axios.get(`${host}p/${selectedCityCode}?depth=2`);
-  //     setDistricts(response.data.districts);
-  //   } catch (error) {
-  //     console.error('Error fetching districts:', error);
-  //   }
-  // };
-
-  // const handleDistrictChange = async (event) => {
-  //   const selectedDistrictCode = event.target.value;
-  //   setSelectedDistrict(selectedDistrictCode);
-  //   setSelectedWard("");
-
-  //   try {
-  //     const response = await axios.get(`${host}d/${selectedDistrictCode}?depth=2`);
-  //     setWards(response.data.wards);
-  //   } catch (error) {
-  //     console.error('Error fetching wards:', error);
-  //   }
-  // };
-
-  // const handleWardChange = (event) => {
-  //   setSelectedWard(event.target.value);
-  // };
-
   const handleWardAddress = (event) => {
     setSelectedAddress(event.target.value);
   };
-
+  
 
 
   const printResult = () => {
@@ -222,10 +181,9 @@ const CheckOut = () => {
   const foundItem2 = wards?.find((item: any) => item?.code == selectedWard);
 
   const address =
-    `${foundItem?.name} , ${foundItem1?.name} , ${foundItem2?.name} , ${selectedAdd}`;
-  // console.log("adress : ", address);
+    `${selectedAdd}`;
   // 
-
+// 
 
   useEffect(() => {
     // Fetch data from API and set initial values for cities
@@ -247,7 +205,7 @@ const CheckOut = () => {
       .catch((error) => console.error("Error fetching districts:", error));
   };
 
-
+  
 
   const handleDistrictChange = (e) => {
     setSelectedDistrict(e.target.value);
@@ -436,7 +394,7 @@ const CheckOut = () => {
         };
         setdat1(newData)
 
-        if (foundItem?.name === undefined || foundItem1?.name === undefined || foundItem2?.name === undefined || selectedAdd === "") {
+        if (selectedAdd === "") {
           // console.log("bạn chưa nhập đủ thông tin1")
           messageApi.info({
             type: "error",
@@ -501,27 +459,6 @@ const CheckOut = () => {
                 });
                 console.log("a")
               });
-            // if (step === "VERIFY_OTP") {
-            //   console.log("ok")
-            //   await addCheckout(newData);
-            //   window.location.href = '/purchase';
-            //   if (newData) {
-            //     newData.products.map((item) => quantityCheckout(item));
-            //   }
-            //   // xóa các sản phẩm đã được thanh toán ra khỏi giỏ hàng
-            //   if (newData) {
-            //     newData.products.map((item) => removeCartCheckout(item));
-            //   }
-            //   //
-            //   if (newData) {
-            //     newData.products.map((item) => quantityCheckout(item));
-            //   }
-            //   localStorage.setItem('successMessage', "Chúc mừng bạn đã đặt hàng thành công , đơn hàng sẽ được chuyển đi sớm nhất 🎉🎉🎉");
-            //   return;
-            // }
-            // else {
-            //   console.log("lỗi")
-            // }
           } else {
             console.log("bạn chưa chọn phương thức thanh toán");
             messageApi.info({
@@ -709,14 +646,6 @@ const CheckOut = () => {
                   </div>
                   <div className="col-md-12 pb-4">
                     <label htmlFor="">Số điện thoại</label>
-                    {/* <input
-                      type="text"
-                      className="form-control"
-                      // id="number"
-                      placeholder="Số điện thoại"
-                      name="tel"
-                      value={usersOne.tel}
-                    /> */}
                     <input
                       value={phoneNumber}
                       className="form-control"
@@ -728,7 +657,7 @@ const CheckOut = () => {
                     <div id="recaptcha-container"></div>
                   </div>
 
-                  {/* <div className="row"> */}
+                  {/* <div className="row">
                   <div className="col-lg-12">
                     <div className="form-group focused">
                       <label className="form-control-label" htmlFor="input-city">Thành phố</label>
@@ -779,7 +708,7 @@ const CheckOut = () => {
                         ))}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-lg-12">
                     <div className="">
                       <label className="form-control-label" htmlFor="input-country">Địa chỉ cụ thể</label>
@@ -823,25 +752,12 @@ const CheckOut = () => {
                       <td style={{ width: "100px", textAlign: "center" }}>
                         <h5>{item?.size}</h5>
                       </td>
-                      {/* <td style={{ width: "100px" }}>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <button
-                            style={{
-                              backgroundColor: item?.color,
-                              width: "20px",
-                              height: "20px",
-                              margin: "5px",
-                            }}
-                          ></button>
-                          <h5>{item?.color}</h5>
-                        </div>
-                      </td> */}
                       <td style={{ width: "100px", textAlign: "center" }}>
                         <h5>{item?.quantity}</h5>
                       </td>
                       <td style={{ width: "100px" }}>
                         <h5>
-                          {item?.price?.toLocaleString("vi-VN", {
+                          {item?.price_var?.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",
                           })}

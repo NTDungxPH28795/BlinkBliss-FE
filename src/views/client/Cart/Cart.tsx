@@ -9,8 +9,9 @@ import {
   useGetProductDetailQuery,
 } from "../../../services/productDetail.service";
 import { useGetProductsQuery } from "../../../services/product.service";
-import { Button, Popconfirm, notification, message } from "antd";
+import { Button, Popconfirm, notification,message } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import { message as messageApi } from "antd";
 import { useForm } from "react-hook-form";
 import ProductSale from "../home/homeProduct/ProductSale";
 import EditProductModal from "./CartModel";
@@ -37,88 +38,103 @@ const Cart = () => {
       setProductQuantities(quantities);
     }
   }, [ProductDetailUser]);
+  useEffect(() => {
+    // console.log("All product quantities:", productQuantities);
+  }, [productQuantities]);
+  // console.log("productQuantities:", productQuantities);
 
   const getQuantityInStock = (productDetailId) => {
     return productQuantities[productDetailId] || 0;
   };
 
+  console.log(cartDetail);
+  // console.log(cartUser)
+  // sản phẩm dược chọn
   const productsWithTrueStatus = cartDetail.filter(
-    (product) => product.status === true
-  );
-  const totalCost = productsWithTrueStatus.reduce(
-    (acc, product) => acc + product.quantity * product.price,
-    0
+    (product: any) => product.status === true
   );
 
+  const totalCost = productsWithTrueStatus?.reduce(
+    (acc, product: any) => acc + product.quantity * product.price_var,
+    0
+  );
+  //
   useEffect(() => {
     if (cartUser && ProductDetailUser) {
-      const cartDetailIds = cartUser.products.map(
-        (item) => item.productDetailId
+      const cartDetailIds = cartUser?.products.map(
+        (item: any) => item.productDetailId
       );
-      const matchingIds = cartDetailIds.filter((id) =>
+
+      const matchingIds = cartDetailIds?.filter((id: any) =>
         ProductDetailUser.some((product) => product._id === id)
       );
 
-      const productIds = ProductDetailUser.map((item) => item.product_id);
-      const filteredProducts = Product.filter((product) =>
-        productIds.includes(product._id)
+      const productIds = ProductDetailUser?.map((item) => item.product_id);
+      const filteredProducts = Product?.filter((product: any) =>
+        productIds.includes(product?._id)
       );
 
-      const matchingProductDetailUser = ProductDetailUser.filter((item) =>
+      const matchingProductDetailUser = ProductDetailUser?.filter((item) =>
         matchingIds.includes(item._id)
       );
 
-      const modifiedProductDetails = matchingProductDetailUser.map((item) => {
-        const matchingProduct = filteredProducts.find(
-          (product) => product._id === item.product_id
-        );
+      const modifiedProductDetails = matchingProductDetailUser?.map(
+        (item: any) => {
+          console.log(item.price_var)
 
-        if (matchingProduct) {
-          const price = matchingProduct.price;
-          const price_sale = matchingProduct.price_sale;
-          const status = cartUser.products.find(
-            (product) => product.productDetailId === item._id
-          ).status;
-          const cart_id = cartUser.products.find(
-            (product) => product.productDetailId === item._id
-          ).cart_id;
-          const quantity = cartUser.products.find(
-            (product) => product.productDetailId === item._id
-          ).quantity;
-          const idCartDetail = cartUser.products.find(
-            (product) => product.productDetailId === item._id
-          )._id;
+          const matchingProduct = filteredProducts?.find(
+            (product) => product._id === item.product_id
+          );
 
-          const quantityInStock = productQuantities[item._id] || 0;
+          if (matchingProduct) {
+            const price = matchingProduct.price;
+            const price_sale = matchingProduct.price_sale;
+            const status = cartUser?.products.find(
+              (product: any) => product.productDetailId === item._id
+            ).status;
+            const cart_id = cartUser?.products.find(
+              (product: any) => product.productDetailId === item._id
+            ).cart_id;
+            const quantity = cartUser?.products.find(
+              (product: any) => product.productDetailId === item._id
+            ).quantity;
+            const idCartDetail = cartUser?.products.find(
+              (product: any) => product.productDetailId === item._id
+            )._id;
 
-          return {
-            ...item,
-            name: matchingProduct.name,
-            image: matchingProduct.images[0],
-            price: price,
-            price_sale: price_sale,
-            quantity: quantity,
-            total: price * quantity,
-            idCartDetail: idCartDetail,
-            status: status,
-            cart_id: cart_id,
-            quantityInStock: quantityInStock,
-          };
-        } else {
-          return item;
+            // Lấy số lượng trong kho từ state productQuantities
+            const quantityInStock = productQuantities[item._id] || 0;
+
+            return {
+              ...item,
+              name: matchingProduct.name,
+              image: matchingProduct.images[0],
+              price: price,
+              price_var: item.price_var,
+              price_sale: price_sale,
+              quantity: quantity,
+              total: item.price_var * quantity,
+              idCartDetail: idCartDetail,
+              status: status,
+              cart_id: cart_id,
+              quantityInStock: quantityInStock, // Thêm thông tin số lượng trong kho
+            };
+          } else {
+            return item;
+          }
         }
-      });
+      );
 
       setCartDetail(modifiedProductDetails);
     }
   }, [cartUser, ProductDetailUser, productQuantities]);
 
-  const removeProduct = async (id) => {
+  const removeProduct = async (id: string) => {
     try {
-      await removeCartDetailMutation(id);
-      message.info({
+      const response = await removeCartDetailMutation(id);
+      messageApi.info({
         type: "error",
-        content: "Xóa sản phẩm trong giỏ hàng thành công",
+        content: "Xóa sản phẩm trong giỏ hàng thành công ",
         className: "custom-class",
         style: {
           marginTop: "0",
@@ -135,12 +151,13 @@ const Cart = () => {
     }
   };
 
+  // update
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [editingProduct, setEditingProduct] = useState({});
+  const [editingProduct, setEditingProduct] = useState<any>({});
   const { control, handleSubmit, setValue, watch } = useForm();
   const [quantity, setQuantity] = useState(0);
-
+  // console.log(editingProduct)
   const setQuantityForEditingProduct = () => {
     if (editingProduct) {
       setQuantity(editingProduct.quantityInStock || 0);
@@ -151,8 +168,10 @@ const Cart = () => {
     setQuantityForEditingProduct();
   }, [editingProduct]);
 
-  const handleEditClick = (id) => {
-    const productToEdit = cartDetail.find((item) => item.idCartDetail === id);
+  const handleEditClick = (id: string) => {
+    const productToEdit = cartDetail?.find(
+      (item: any) => item?.idCartDetail === id
+    );
     setEditingProduct(productToEdit);
     showModal();
   };
@@ -165,17 +184,19 @@ const Cart = () => {
     setConfirmLoading(true);
     try {
       const editedProduct = {
-        _id: editingProduct._id,
-        idCartDetail: editingProduct.idCartDetail,
+        _id: editingProduct?._id,
+        idCartDetail: editingProduct?.idCartDetail,
         quantity: watch("quantity"),
       };
-
-      if (parseInt(editedProduct.quantity, 10) > editingProduct.quantityInStock) {
-        message.warning("Số lượng trong kho đã hết.");
+  
+      if (parseInt(editedProduct.quantity, 10) > editingProduct?.quantityInStock) {
+        // Hiển thị thông báo lỗi nếu số lượng mới vượt quá số lượng còn lại
+        message.warning("Số lượng trong kho đã hết :)).");
       } else {
+        // Tiến hành cập nhật giỏ hàng
         await onSubmit(editedProduct);
       }
-
+  
       setConfirmLoading(false);
       setOpen(false);
     } catch (error) {
@@ -183,6 +204,9 @@ const Cart = () => {
       setConfirmLoading(false);
     }
   };
+  
+  
+  
 
   const handleCancel = () => {
     setOpen(false);
@@ -190,8 +214,8 @@ const Cart = () => {
 
   useEffect(() => {
     if (editingProduct) {
-      setValue("_id", editingProduct._id);
-      setValue("color", editingProduct.color);
+      setValue("_id", editingProduct?._id);
+      setValue("color", editingProduct?.color);
       setValue("idCartDetail", editingProduct.idCartDetail);
       setValue("image", editingProduct.image);
       setValue("name", editingProduct.name);
@@ -199,12 +223,13 @@ const Cart = () => {
       setValue("product_id", editingProduct.product_id);
       setValue("quantity", editingProduct.quantity);
       setValue("size", editingProduct.size);
+      setValue("price_var", editingProduct.price_var);
       setValue("total", editingProduct.total);
       setValue("status", editingProduct.status);
     }
   }, [editingProduct, setValue]);
 
-  const handleQuantityChange = (event) => {
+  const handleQuantityChange = (event: any) => {
     const newQuantity = parseInt(event.target.value, 10);
     if (!isNaN(newQuantity) && newQuantity >= 1) {
       setValue("quantity", newQuantity);
@@ -224,9 +249,9 @@ const Cart = () => {
       setValue("quantity", newQuantity);
     }
   };
-
+  // Lấy ra danh sách các size và màu duy nhất từ sản phẩm đã chọn
   const targetProduct = ProductDetailUser?.filter(
-    (item) => item.product_id === editingProduct.product_id
+    (item) => item?.product_id === editingProduct?.product_id
   );
   const selectedProductSizes = [
     ...new Set(targetProduct?.map((product) => product.size)),
@@ -239,33 +264,36 @@ const Cart = () => {
     return product.size === selectedSize && product.color === selectedColor;
   });
 
-  const handleSizeChange = (newSize) => {
+  // console.log(matchingProduct)
+  const handleSizeChange = (newSize: any) => {
     setValue("size", newSize);
     const matchingColors = targetProduct
       ?.filter((product) => product.size === newSize)
       ?.map((product) => product.color);
     setValue("color", matchingColors[0]);
   };
-
-  const onSubmit = async (cartUs) => {
+  // console.log(matchingProduct)
+  const onSubmit = async (cartUs: any) => {
     if (matchingProduct) {
-      const productQuantities = {};
+      const productQuantities: { [productId: string]: number } = {}; 
       const productId = matchingProduct.product_id;
       const newQuantity = parseInt(watch("quantity"), 10);
 
       if (newQuantity > productQuantities[productId]) {
+        console.log("Số lượng mới lớn hơn số lượng trong kho");
         message.warning("Số lượng chỉnh sửa vượt quá số lượng còn lại.");
         return;
       } else {
+        // Số lượng hợp lệ, tiến hành cập nhật giỏ hàng
         cartUs._id = matchingProduct._id;
         try {
           const modifiedCartDetail = {
             idCartDetail: cartUs.idCartDetail,
             productDetailId: cartUs._id,
-            quantity: newQuantity,
+            quantity: newQuantity, // Sử dụng số lượng mới
           };
           await updateCartDetailMutation(modifiedCartDetail);
-          message.info({
+          messageApi.info({
             type: "success",
             content: "Cập nhật giỏ hàng thành công 🎉🎉🎉",
             className: "custom-class",
@@ -275,136 +303,208 @@ const Cart = () => {
               lineHeight: "50px",
             },
           });
+          setOpen(false);
         } catch (error) {
-          console.error("Lỗi khi cập nhật giỏ hàng", error);
-          notification.error({
-            message: "Cập nhật giỏ hàng",
-            description: "Không thể cập nhật giỏ hàng. Vui lòng thử lại sau.",
-          });
+          console.error("Lỗi khi submit hoặc cập nhật", error);
         }
       }
     } else {
-      message.warning("Sản phẩm này không tồn tại. Vui lòng kiểm tra lại.");
+      // Xử lý khi không tìm thấy sản phẩm phù hợp
+      console.log("Không tìm thấy sản phẩm phù hợp");
+      messageApi.info({
+        type: "error",
+        content: "Không tìm thấy sản phẩm phù hợp !!!",
+        className: "custom-class",
+        style: {
+          marginTop: "0",
+          fontSize: "20px",
+          lineHeight: "50px",
+        },
+      });
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  const handleCheckboxChange = (e: any, item: any) => {
+    const checkbox = {
+      idCartDetail: item?.idCartDetail,
+      status: e.target.checked,
+    };
+    // console.log(checkbox)
+    updateCartDetailMutation(checkbox);
+  };
 
-  return (
-    <>
-      <div className="flex flex-col gap-4">
-        {cartDetail.length === 0 ? (
-          <div>
-            <h3 className="text-center my-8">
-              Không có sản phẩm nào trong giỏ hàng.
-              <Link to="/" className="underline hover:underline">
-                Về trang chủ
-              </Link>
-            </h3>
+  if (isLoading) {
+    return (
+      <div>
+        <div className="right-wrapper">
+          <div className="spinnerIconWrapper">
+            <div className="spinnerIcon"></div>
           </div>
-        ) : (
-          cartDetail.map((item) => (
-            <div className="shadow-md p-4 rounded-lg" key={item.idCartDetail}>
-              <div className="grid grid-cols-4 gap-4 items-center">
-                <img
-                  className="w-48 rounded-md h-full"
-                  src={item.image}
-                  alt={item.name}
-                />
-                <div className="flex flex-col gap-4">
-                  <h3 className="font-bold text-lg">{item.name}</h3>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-500">
-                      Kích thước: {item.size}
-                    </span>
-                    <span className="text-gray-500">
-                      Màu sắc: {item.color}
-                    </span>
-                  </div>
-                  <div className="text-orange-600 font-bold text-xl">
-                    {item.price}đ
-                  </div>
-                  <div>
-                    <p className="text-green-500">
-                      Còn lại: {item.quantityInStock}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-orange-600 font-bold text-lg">
-                      Tổng: {item.total}đ
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-2 items-center">
-                    <button
-                      className="w-6 h-6 rounded-full bg-gray-200 text-center flex justify-center items-center"
-                      onClick={() => decrementQuantity(item)}
-                    >
-                      -
-                    </button>
-                    <input
-                      type="text"
-                      value={item.quantity}
-                      onChange={handleQuantityChange}
-                      className="w-12 h-8 text-center border rounded"
-                    />
-                    <button
-                      className="w-6 h-6 rounded-full bg-gray-200 text-center flex justify-center items-center"
-                      onClick={() => incrementQuantity(item)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <Popconfirm
-                    title="Xác nhận xóa sản phẩm"
-                    onConfirm={() => removeProduct(item.idCartDetail)}
-                    okText="Đồng ý"
-                    cancelText="Hủy"
-                  >
-                    <Button
-                      className="text-red-600"
-                      icon={<CloseOutlined />}
-                    />
-                  </Popconfirm>
-                  <Button
-                    type="primary"
-                    onClick={() => handleEditClick(item.idCartDetail)}
-                  >
-                    Chỉnh sửa
-                  </Button>
-                </div>
-              </div>
+          <div className="finished-text">Xin vui lòng chờ một chút 🥰🥰🥰</div>
+        </div>
+      </div>
+    );
+  }
+  // console.log(cartDetail);
+  return (
+    <div>
+      <section className="cart_area">
+        <div className="container">
+          <hr />
+          <div className="cart_inner">
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Tên Sản Phẩm</th>
+                    {/* <th scope="col">Số lượng còn lại</th> */}
+                    <th scope="col">Kích Cỡ</th>
+                    {/* <th scope="col">Màu Sắc</th> */}
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Tạm Tính</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartDetail?.map((item: any) => (
+                    <tr key={item?._id}>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={item?.status}
+                          onChange={(e) => handleCheckboxChange(e, item)}
+                        />
+                      </td>
+                      <td style={{ width: "100px" }}>
+                        <img width={"100px"} src={item?.image} alt="" />
+                      </td>
+                      <td>
+                        <h6>{item?.name}</h6>
+                      </td>
+                      <td>
+                        <h5>{item?.size}</h5>
+                      </td>
+                      <td>
+                        <h5>{item.quantity}</h5>
+                      </td>
+
+                      <td>
+                        <h5>
+                          {item.price_var?.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          })}
+                        </h5>
+                      </td>
+                      <td>
+                        <h5>
+                          {item.total?.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          })}
+                        </h5>
+                      </td>
+                      <td>
+                        <Button
+                          type="primary"
+                          onClick={() => handleEditClick(item.idCartDetail)}
+                        >
+                          Chỉnh sửa
+                        </Button>
+                        <Popconfirm
+                          title="Bạn có chắc muốn xóa sản phẩm này không?"
+                          onConfirm={() => {
+                            removeProduct(item.idCartDetail);
+                          }}
+                          okText="Xóa"
+                          cancelText="Hủy"
+                        >
+                          <Button
+                            type="primary"
+                            style={{ backgroundColor: "red", margin: "4px" }}
+                          >
+                            <CloseOutlined />
+                          </Button>
+                        </Popconfirm>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          ))
-        )}
-      </div>
-      <EditProductModal
-        open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-        editingProduct={editingProduct}
-        selectedProductSizes={selectedProductSizes}
-        control={control}
-        handleSizeChange={handleSizeChange}
-        setValue={setValue}
-        quantity={quantity}
-        incrementQuantity={incrementQuantity}
-        decrementQuantity={decrementQuantity}
-        matchingProduct={matchingProduct}
-      />
-      <div className="flex justify-between items-center mt-8">
-        <h3 className="text-2xl font-bold">
-          Tổng số tiền: {totalCost.toLocaleString()}đ
-        </h3>
-        <Button type="primary" size="large">
-          Thanh toán
-        </Button>
-      </div>
-    </>
+            <div>
+              <hr />
+              <table className="table">
+                <tbody>
+                  <tr className="out_button_area">
+                    <td>
+                      <h3>
+                        Số sản phẩm đã chọn: {productsWithTrueStatus?.length}
+                      </h3>
+                    </td>
+                    <td></td>
+                    <td>
+                      {productsWithTrueStatus?.length > 0 ? (
+                        <h3>
+                          Tổng tiền thanh toán:{" "}
+                          {totalCost?.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          })}
+                        </h3>
+                      ) : (
+                        <p>Không có sản phẩm nào để thanh toán</p>
+                      )}
+                    </td>
+                    <td></td>
+                    <td>
+                      <div className="align-items-center">
+                        {productsWithTrueStatus?.length > 0 ? (
+                          <Link to="/checkout" className="primary-btn">
+                            Thanh toán
+                          </Link>
+                        ) : (
+                          <a className="gray_btn" href="/">
+                            Tiếp tuc mua sắm
+                          </a>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <ProductSale />
+              <EditProductModal
+                open={open}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel}
+                handleOk={handleOk}
+                control={control}
+                handleSubmit={handleSubmit}
+                handleSizeChange={handleSizeChange}
+                targetProduct={targetProduct}
+                selectedProductSizes={selectedProductSizes}
+                selectedColor={selectedColor}
+                watch={watch}
+                handleQuantityChange={handleQuantityChange}
+                quantity={quantity}
+                incrementQuantity={incrementQuantity}
+                decrementQuantity={decrementQuantity}
+                editingProduct={editingProduct}
+                setValue={setValue}
+                onSubmit={onSubmit}
+                quantityInStock={editingProduct?.quantityInStock || 0}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

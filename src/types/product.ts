@@ -1,7 +1,8 @@
 export interface IProductDetail {
     _id?: string;
     name?: string;
-    size?: number;
+    size?: string;
+    price_var?: number;
     product_id?: string;
     quantity?: number;
 }

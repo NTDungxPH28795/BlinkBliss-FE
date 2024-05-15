@@ -5,10 +5,13 @@ import {
   useUpdateProductStatusMutation,
 } from "../../../../services/product.service";
 import { useGetBrandsQuery } from "../../../../services/brand.service";
+import { useGetAllProductsDetailQuery } from "../../../../services/productDetail.service";
+
 
 
 const PageProduct = () => {
   const { data: productData, isLoading } = useGetProductsQuery();
+  const { data: productData1 } = useGetAllProductsDetailQuery();
   const { data: brandData } = useGetBrandsQuery();
   const brandName = (item: any) =>
     brandData?.find((brand: any) => brand._id == item.brand_id)?.name;
@@ -22,6 +25,8 @@ const PageProduct = () => {
     {}
   );
   const [updateProductStatus] = useUpdateProductStatusMutation();
+
+console.log(productData1)
 
   useEffect(() => {
     // Lấy trạng thái sản phẩm từ Server khi component được tải
@@ -99,7 +104,7 @@ const PageProduct = () => {
       <section className="our-team position-relative">
         <div className="container_home">
           <div className="d-flex pb-5">
-            <div className="fs-5 text-uppercase fw-bold">- SẢN PHẨM MỚI</div>
+            <div className="fs-5 text-uppercase fw-bold">-THƯƠNG HIỆU</div>
             <div>
               <div className="d-flex flex-row mx-4 w-full">
                 {brandData?.map((item) => {
@@ -136,7 +141,6 @@ const PageProduct = () => {
                         <div className="bg-white content-product w-100 p-2 pt-4">
                           <div className="product-detail px-3 row ">
                             <div className="col-12 row px-2">
-                              {/* <div className="col-1 m-1 product-color " style={{ backgroundColor: color }} /> */}
                               <div className="col-1 m-1 product-color color-2" />
                               <div className="col-1 m-1 product-color color-3" />
                             </div>
@@ -148,14 +152,14 @@ const PageProduct = () => {
                           {item.price_sale > 0 ? (
                             <div className="product-price row">
                               <strong className="col-12">
-                                {item.price_sale.toLocaleString("vi-VN", {
+                                {item.price_sale?.toLocaleString("vi-VN", {
                                   style: "currency",
                                   currency: "VND",
                                 })}
                               </strong>
                               <div className="d-flex">
                                 <del className="price-del">
-                                  {item.price.toLocaleString("vi-VN", {
+                                  {item.price?.toLocaleString("vi-VN", {
                                     style: "currency",
                                     currency: "VND",
                                   })}
@@ -168,7 +172,7 @@ const PageProduct = () => {
                           ) : (
                             <div className="product-price row">
                               <strong className="col-12">
-                                {item.price.toLocaleString("vi-VN", {
+                                {item.price?.toLocaleString("vi-VN", {
                                   style: "currency",
                                   currency: "VND",
                                 })}

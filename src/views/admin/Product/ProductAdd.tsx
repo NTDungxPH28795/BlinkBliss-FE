@@ -6,6 +6,8 @@ import { useGetBrandsQuery } from "../../../services/brand.service";
 import { IProducts } from "../../../types/product2";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ProductAdd: React.FC = () => {
   const {
@@ -48,6 +50,7 @@ const ProductAdd: React.FC = () => {
       const newProduct = await addProduct(product);
       const idPro = newProduct.data._id;
 
+      console.log(newProduct)
       notification.success({
         message: "Success",
         description: "Thêm Sản Phẩm Thành Công!",
@@ -208,37 +211,37 @@ const ProductAdd: React.FC = () => {
                     <Button>Chọn ảnh</Button>
                   </Upload>
                 </div>
+
                 <div className="mb-3">
                   <label htmlFor="productDescription" className="form-label">
-                    Mô tả sản phẩm
+                    Mô tả ngắn
                   </label>
-                  <textarea
-                    {...register("description", { required: true })}
-                    id="productDescription"
-                    cols={30}
-                    rows={5}
-                    className={`w-100 form-control p-2 ${errors.description ? "is-invalid" : ""
-                      }`}
+                  <CKEditor
+                    editor={ClassicEditor}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      register('description', { required: true, value: data });
+                    }}
                   />
                   {errors.description && (
                     <div className="invalid-feedback">Không được bỏ trống!</div>
                   )}
                 </div>
+        
                 <div className="mb-3">
-                  <label htmlFor="productContent" className="form-label">
+                    <label htmlFor="productDescription" className="form-label">
                     Nội dung sản phẩm
-                  </label>
-                  <textarea
-                    {...register("content", { required: true })}
-                    id="productContent"
-                    cols={30}
-                    rows={5}
-                    className={`w-100 form-control p-2 ${errors.content ? "is-invalid" : ""
-                      }`}
-                  />
-                  {errors.content && (
-                    <div className="invalid-feedback">Không được bỏ trống!</div>
-                  )}
+                    </label>
+                    <CKEditor
+                        editor={ClassicEditor}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
+                            register('content', { required: true, value: data });
+                        }}
+                    />
+                    {errors.description && (
+                        <div className="invalid-feedback">Không được bỏ trống!</div>
+                    )}
                 </div>
                 <div className="mb-3">
                   <Button type="primary" htmlType="submit">

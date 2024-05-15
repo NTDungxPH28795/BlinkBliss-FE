@@ -6,7 +6,7 @@ import { useFetchOneUserQuery } from "../../../services/user.service";
 import { Link } from "react-router-dom";
 
 // console.log(profileUser)
-// Profile view
+
 const Profile = () => {
   const profileUser = JSON.parse(localStorage.getItem("user")!);
   const idUs = profileUser?.user;
@@ -28,9 +28,9 @@ const Profile = () => {
             }}
           >
             {/* Mask */}
-            < span className="mask bg-gradient-default opacity-8" />
+            <span className="mask bg-gradient-default opacity-8" />
             {/* Header container */}
-            < div className="container-fluid d-flex align-items-center" >
+            <div className="container-fluid d-flex align-items-center">
               <div className="row">
                 <div className="col-lg-7 col-md-10">
                   <h1 className="display-2 text-white">
@@ -49,10 +49,10 @@ const Profile = () => {
                   </Link>
                 </div>
               </div>
-            </div >
-          </div >
+            </div>
+          </div>
           {/* Page content */}
-          < div className="container-fluid mt--7" >
+          <div className="container-fluid mt--7">
             <div className="row">
               <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div className="card card-profile shadow">
@@ -113,9 +113,9 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-          </div >
-        </div >
-      </div >
+          </div>
+        </div>
+      </div>
       <style
         dangerouslySetInnerHTML={{
           __html:
@@ -176,7 +176,7 @@ const Profile = () => {
             ".footer {  padding: 2.5rem 0;  background: #f7fafc;}.footer .nav .nav-item .nav-link {  color: #8898aa !important;}.footer .nav .nav-item .nav-link:hover {  color: #525f7f !important;}.footer .copyright {  font-size: .875rem;}.form-control-label {  font-size: .875rem;  font-weight: 600;  color: #525f7f;}.form-control {  font-size: .875rem;}.form-control:focus:-ms-input-placeholder {  color: #adb5bd;}.form-control:focus::-ms-input-placeholder {  color: #adb5bd;}.form-control:focus::placeholder {  color: #adb5bd;}textarea[resize='none'] {  resize: none !important;}textarea[resize='both'] {  resize: both !important;}textarea[resize='vertical'] {  resize: vertical !important;}textarea[resize='horizontal'] {  resize: horizontal !important;}.form-control-alternative {  transition: box-shadow .15s ease;  border: 0;  box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);}.form-control-alternative:focus {  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);}.input-group {  transition: all .15s ease;  border-radius: .375rem;  box-shadow: none;}.input-group .form-control {  box-shadow: none;}.input-group .form-control:not(:first-child) {  padding-left: 0;  border-left: 0;}.input-group .form-control:not(:last-child) {  padding-right: 0;  border-right: 0;}.input-group .form-control:focus {  box-shadow: none;}.input-group-text {  transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);}.input-group-alternative {  transition: box-shadow .15s ease;  border: 0;  box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);}.input-group-alternative .form-control,.input-group-alternative .input-group-text {  border: 0;  box-shadow: none;}.focused .input-group-alternative {  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08) !important;}.focused .input-group {  box-shadow: none;}.focused .input-group-text {  color: #8898aa;  border-color: rgba(50, 151, 211, .25);  background-color: #fff;}.focused .form-control {  border-color: rgba(50, 151, 211, .25);}.header {  position: relative;}.input-group {  transition: all .15s ease;  border-radius: .375rem;  box-shadow: none;}.input-group .form-control {  box-shadow: none;}.input-group .form-control:not(:first-child) {  padding-left: 0;  border-left: 0;}.input-group .form-control:not(:last-child) {  padding-right: 0;  border-right: 0;}.input-group .form-control:focus {  box-shadow: none;}.input-group-text {  transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);}.input-group-alternative {  transition: box-shadow .15s ease;  border: 0;  box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);}.input-group-alternative .form-control,.input-group-alternative .input-group-text {  border: 0;  box-shadow: none;}.focused .input-group-alternative {  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08) !important;}.focused .input-group {  box-shadow: none;}.focused .input-group-text {  color: #8898aa;  border-color: rgba(50, 151, 211, .25);  background-color: #fff;}.focused .form-control {  border-color: rgba(50, 151, 211, .25);}.mask {  position: absolute;  top: 0;  left: 0;  width: 100%;  height: 100%;  transition: all .15s ease;}@media screen and (prefers-reduced-motion: reduce) {  .mask {    transition: none;  }}.nav-link {  color: #525f7f;}.nav-link:hover {  color: #5e72e4;}.nav-link i.ni {  position: relative;  top: 2px;}.navbar-search .input-group {  border: 2px solid;  border-radius: 2rem;  background-color: transparent;}.navbar-search .input-group .input-group-text {  padding-left: 1rem;  background-color: transparent;}.navbar-search .form-control {  width: 270px;  background-color: transparent;}.navbar-search-dark .input-group {  border-color: rgba(255, 255, 255, .6);}.navbar-search-dark .input-group-text {  color: rgba(255, 255, 255, .6);}.navbar-search-dark .form-control {  color: rgba(255, 255, 255, .9);}.navbar-search-dark .form-control:-ms-input-placeholder {  color: rgba(255, 255, 255, .6);}.navbar-search-dark .form-control::-ms-input-placeholder {  color: rgba(255, 255, 255, .6);}.navbar-search-dark .form-control::placeholder {  color: rgba(255, 255, 255, .6);}.navbar-search-dark .focused .input-group {  border-color: rgba(255, 255, 255, .9);}@media (min-width: 768px) {  .navbar .dropdown-menu {    margin: 0;    pointer-events: none;    opacity: 0;  }  .navbar .dropdown-menu-arrow:before {    position: absolute;    z-index: -5;    bottom: 100%;    left: 20px;    display: block;    width: 12px;    height: 12px;    content: '';    transform: rotate(-45deg) translateY(12px);    border-radius: 2px;    background: #fff;    box-shadow: none;  }  .navbar .dropdown-menu-right:before {    right: 20px;    left: auto;  }  @ keyframes show-navbar-dropdown {    0% {      transition: visibility .25s, opacity .25s, transform .25s;      transform: translate(0, 10px) perspective(200px) rotateX(-2deg);      opacity: 0;    }    100% {      transform: translate(0, 0);      opacity: 1;    }  }  @keyframes hide-navbar-dropdown {    from {      opacity: 1;    }    to {      transform: translate(0, 10px);      opacity: 0;    }  }}@media (max-width: 767.98px) {  .navbar-nav .nav-link {    padding: .625rem 0;    color: #172b4d !important;  }  .navbar-nav .dropdown-menu {    min-width: auto;    box-shadow: none;  }}@keyframes show-navbar-collapse {  0% {    transform: scale(.95);    transform-origin: 100% 0;    opacity: 0;  }  100% {    transform: scale(1);    opacity: 1;  }}@keyframes hide-navbar-collapse {  from {    transform: scale(1);    transform-origin: 100% 0;    opacity: 1;  }  to {    transform: scale(.95);    opacity: 0;  }}.progress {  overflow: hidden;  height: 8px;  margin-bottom: 1rem;  border-radius: .25rem;  background-color: #e9ecef;  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);}p {  font-size: 1rem;  font-weight: 300;  line-height: 1.7;}.description {  font-size: .875rem;}.heading {  font-size: .95rem;  font-weight: 600;  letter-spacing: .025em;  text-transform: uppercase;}.heading-small {  font-size: .75rem;  padding-top: .25rem;  padding-bottom: .25rem;  letter-spacing: .04em;  text-transform: uppercase;}.display-2 span {  font-weight: 300;  display: block;}@media (max-width: 768px) {  .btn {    margin-bottom: 10px;  }}#navbar .navbar {  margin-bottom: 20px;}<style/>",
         }}
       />
-    </div >
+    </div>
   );
 };
 

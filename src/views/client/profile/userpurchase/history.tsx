@@ -68,7 +68,7 @@ const History: React.FC = () => {
         ?.filter((order) => !searchFullName || order.fullName.toLowerCase().includes(searchFullName))
         ?.sort((a, b) => new Date(b.dateCreate).getTime() - new Date(a.dateCreate).getTime())
         ?.map((order, index) => ({ ...order, index: index + 1 }));
-    // loading
+
     if (isLoading) {
         return <div>
             <div className="right-wrapper">

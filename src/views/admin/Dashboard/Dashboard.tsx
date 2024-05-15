@@ -217,7 +217,7 @@ const Dashboard = () => {
         {
             content: dataCt[i += 1],
 
-            contentAll: 'Tổng tiền bán được',
+            contentAll: 'Tổng tiền bán sản phẩm',
             contentDay: 'Tổng tiền bán được theo ngày',
             contentMonth: 'Tổng tiền bán được theo tháng',
 
@@ -231,9 +231,9 @@ const Dashboard = () => {
         {
             content: dataCt[i += 1],
 
-            contentAll: 'Tổng tiền sau khuyến mại',
-            contentDay: 'Tổng tiền sau khuyến mại theo ngày',
-            contentMonth: 'Tổng tiền sau khuyến mại theo tháng',
+            contentAll: 'Tổng tiền ',
+            contentDay: 'Tổng tiền theo ngày',
+            contentMonth: 'Tổng tiền theo tháng',
 
             length: datadd[j += 1],
 
@@ -245,9 +245,9 @@ const Dashboard = () => {
         {
             content: dataCt[i += 1],
 
-            contentAll: 'Tổng tiền khuyến mại',
-            contentDay: 'Tổng tiền khuyến mại theo ngày',
-            contentMonth: 'Tổng tiền khuyến mại theo tháng',
+            contentAll: 'Tổng tiền ship',
+            contentDay: 'Tổng tiền ship theo ngày',
+            contentMonth: 'Tổng tiền ship theo tháng',
 
             length: datadd[j += 1],
 

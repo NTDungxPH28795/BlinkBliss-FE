@@ -58,8 +58,8 @@ const OrderDetails: React.FC<{ roleMane: any }> = ({ roleMane }) => {
                             </tr>
                         ) : null}
                     </tbody>
-                </table >
-            </div >
+                </table>
+            </div>
             <div>
                 <table className="table table-striped">
                     <thead>
@@ -93,7 +93,7 @@ const OrderDetails: React.FC<{ roleMane: any }> = ({ roleMane }) => {
                                     <h5>{item?.quantity}</h5>
                                 </td>
                                 <td style={{ width: "100px" }}>
-                                    <h5>{item?.price?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h5>
+                                    <h5>{item?.price_var?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h5>
                                 </td>
                                 <td style={{ width: "100px" }}>
                                     <h5>{item?.total?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h5>
@@ -112,7 +112,7 @@ const OrderDetails: React.FC<{ roleMane: any }> = ({ roleMane }) => {
                     </tbody>
                 </table>
             </div>
-        </div >
+        </div>
     );
 };
 

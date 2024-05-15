@@ -10,7 +10,7 @@ const { Option } = Select;
 type FormData = {
   size: number;
   quantity: number;
-  color: string;
+  price_var: string;
 };
 
 const ProductAdd = () => {
@@ -78,7 +78,7 @@ const ProductAdd = () => {
               >
                 <div className="mb-3">
                   <label htmlFor="productName" className="form-label">
-                    Tên
+                    Tên sản phẩm
                   </label>
                   <select
                     className="form-select"
@@ -101,7 +101,7 @@ const ProductAdd = () => {
                   <input
                     type="text"
                     id="size"
-                    {...register("size", { required: true, min: 1 })}
+                    {...register("size", { required: true})}
                     className={`form-control ${errors.size ? "is-invalid" : ""}`}
                   />
                   {errors.size && (
@@ -112,25 +112,6 @@ const ProductAdd = () => {
                     </div>
                   )}
                 </div>
-
-                {/* <div className="mb-3">
-                  <label htmlFor="productColor" className="form-label">
-                    Màu Sắc
-                  </label>
-                  <input
-                    placeholder="*vui lòng nhập màu bằng tiếng anh và không sai chính tả, xin cảm ơn"
-                    {...register("color", { required: true })}
-                    className={`form-control ${errors.color ? "is-invalid" : ""}`}
-                  />
-                  {errors.color && (
-                    <div id="emailHelp" className="form-text text-danger">
-                      {errors.color.type === "required"
-                        ? "Vui lòng nhập giá trị."
-                        : "Giá trị phải lớn hơn 0."}
-                    </div>
-                  )}
-                </div> */}
-
                 <div className="mb-3">
                   <label htmlFor="productQuantity" className="form-label">
                     Số Lượng
@@ -148,8 +129,23 @@ const ProductAdd = () => {
                     </div>
                   )}
                 </div>
-
-
+                <div className="mb-3">
+                    <label htmlFor="productQuantity" className="form-label">
+                      Giá chi tiết
+                    </label>
+                    <input
+                      type="number"
+                      {...register("price_var", { required: true, min: 0 })}
+                      className={`form-control ${errors.price_var ? "is-invalid" : ""}`}
+                    />
+                    {errors.price_var && (
+                      <div id="emailHelp" className="form-text text-danger">
+                        {errors.price_var.type === "required"
+                          ? "Vui lòng nhập giá trị."
+                          : "Giá trị phải lớn hơn 0."}
+                      </div>
+                    )}
+                </div>
 
                 <div className="mb-3">
                   <Button type="primary" htmlType="submit">

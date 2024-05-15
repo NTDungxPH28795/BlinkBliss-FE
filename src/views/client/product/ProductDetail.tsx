@@ -6,7 +6,6 @@ import {
 } from "../../../services/product.service";
 import { useGetBrandsQuery } from "../../../services/brand.service";
 import {
-  useGetAllProductsDetailQuery,
   useGetAllsProductsDetailQuery,
 } from "../../../services/productDetail.service";
 import Slider from "react-slick";
@@ -38,8 +37,8 @@ const ProductDetail = () => {
   const { _id } = useParams();
   const { data: prodetailData } = useGetProductByIdQuery(_id);
 
-  console.log(prodetailData);
-
+  // console.log(prodetailData);
+  
 
   const brandName = brandData?.find(
     (brand) => brand._id === prodetailData?.brand_id
@@ -48,18 +47,38 @@ const ProductDetail = () => {
 
   console.log(productDataDetail);
 
+  let maxPriceVar;
+  let minPriceVar;
+  if (productDataDetail && productDataDetail.length > 0) {
+    const validPriceVars = productDataDetail.map((item:any) => item.price_var).filter((priceVar:any) => typeof priceVar === 'number' && !isNaN(priceVar));
+  
+    if (validPriceVars.length > 0) {
+      maxPriceVar = Math.max(...validPriceVars);
+  
+      minPriceVar = Math.min(...validPriceVars);
+  
+    } else {
+      console.log("Không có giá trị price_var hợp lệ.");
+    }
+  } else {
+    console.log("Không có dữ liệu sản phẩm.");
+  }
+  // console.log("Giá trị price_var lớn nhất:", maxPriceVar);
+  // console.log("Giá trị price_var bé nhất:", minPriceVar);
+
+  
   const [productSizes, setProductSizes] = useState([]);
   useEffect(() => {
     if (productDataDetail) {
       // Kiểm tra xem productDataDetail có tồn tại và không rỗng
       // Lấy giá trị của size từ productDataDetail và gán vào productSizes
-      const sizes = productDataDetail.map((product: any) => product.size);
+      const sizes = productDataDetail.map((product:any) => product.size);
       setProductSizes(sizes);
     }
   }, [productDataDetail]); // Sử dụng mảng dependency để theo dõi sự thay đổi của productDataDetail
-
+  
   // console.log(productSizes); // In ra productSizes để kiểm tra kết quả
-
+  
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState(prodetailData?.images[0]);
@@ -74,29 +93,31 @@ const ProductDetail = () => {
   const [isErrorVisible, setIsErrorVisible] = useState(false);
 
   const [productdeID, setproductdeID] = useState();
-
+  const [productdeprice, setproductdeprice] = useState();
+  
   useEffect(() => {
     if (selectedSize && productDataDetail) {
       // Lọc ra các phần tử trong productDataDetail có size bằng selectedSize
       const productsWithSelectedSize = productDataDetail.filter(
         (detail: any) => detail.size === selectedSize
       );
-
+  
       // Lặp qua từng phần tử và log id của chúng
       productsWithSelectedSize.forEach((product: any) => {
         setproductdeID(product._id)
-        console.log("ID của sản phẩm có size", selectedSize, " là:", product._id);
+        setproductdeprice(product.price_var)
+        console.log("ID của sản phẩm có size", selectedSize, " là:", product);
       });
     }
   }, [selectedSize, productDataDetail]);
-
-  console.log(productdeID);
+  
+  console.log(productdeprice);
 
   useEffect(() => {
     if (selectedSize) {
       const totalQuantityForSize = productDataDetail
         ?.filter((detail: any) => detail?.size === selectedSize)
-        .reduce((total: any, detail: any) => total + detail.quantity, 0);
+        .reduce((total:any, detail: any) => total + detail.quantity, 0);
       setTotalQuantityForSelectedSize(totalQuantityForSize);
     }
   }, [selectedSize, productDataDetail]);
@@ -110,7 +131,7 @@ const ProductDetail = () => {
     setRemainingQuantity(calculateRemainingQuantity(size));
   };
 
-  const calculateRemainingQuantity = (size: any) => {
+  const calculateRemainingQuantity = (size:any) => {
     const selectedSizeDetail = productDataDetail?.find(
       (detail: any) => detail?.size === size
     );
@@ -159,7 +180,7 @@ const ProductDetail = () => {
   // Tìm productDataDetail có size trùng với size của cartItem
   // const matchedProduct = productDataDetail.find((item:any) => item.size === selectedSize);
 
-
+  
 
   const onSubmitCart = async () => {
     if (profileUser) {
@@ -285,7 +306,8 @@ const ProductDetail = () => {
             <div className="col-lg-5 offset-lg-1">
               <div className="s_product_text">
                 <h3>{prodetailData?.name}</h3>
-                {prodetailData?.price_sale > 0 ? (
+                
+                {/* {prodetailData?.price_sale > 0 ? (
                   <div className="product-price row">
                     <strong className="col-12">
                       {prodetailData?.price_sale?.toLocaleString("vi-VN", {
@@ -311,7 +333,26 @@ const ProductDetail = () => {
                       })}
                     </strong>
                   </div>
-                )}
+                )} */}
+                <div>
+                  {productdeprice ? (
+                    <div className="product-price row pb-2">
+                      <strong className="col-12">
+                        {productdeprice?.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </strong>
+                    </div>
+                  ) : (
+                    <p></p>
+                  )}
+                </div>
+                <strong style={{color:"red" , fontSize:'16px'}}>
+                  {minPriceVar?.toLocaleString("vi-VN", {style: "currency", currency: "VND",})} 
+                  - 
+                  {maxPriceVar?.toLocaleString("vi-VN", {style: "currency", currency: "VND", })}
+                </strong>
                 <ul className="list">
                   <li>
                     <a className="active" href="#">
@@ -320,8 +361,8 @@ const ProductDetail = () => {
                   </li>
                   <hr />
                   <li>
-                    <i>{prodetailData?.description}</i>
-                  </li>
+                    <div dangerouslySetInnerHTML={{ __html: prodetailData?.description }} />
+                </li>
                 </ul>
 
                 <div className="product-blocks-details product-blocks-443 grid-rows">
@@ -364,7 +405,7 @@ const ProductDetail = () => {
                       </button>
                     ))}
                   </div>
-
+                  
                   {/* <div className="remaining-quantity mt-3">
                     <p>
                       {selectedSize &&

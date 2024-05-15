@@ -31,7 +31,7 @@ const { Option } = Select;
 
 interface DataType {
   key: React.Key;
-  size: text;
+  size: number;
   quantity: number;
   product_id: string;
 }
@@ -90,11 +90,11 @@ const Dashboard = (props: Props) => {
         // console.log(filteredProducts);
 
         const updatedDataSource = filteredProducts?.map(
-          ({ _id, size, color, quantity, product_id }: IProduct) => ({
+          ({ _id, size, quantity, product_id, price_var }) => ({
             key: _id,
             size,
-            color,
             quantity,
+            price_var,
             product_id: product.find((role) => role?._id === product_id)?.name,
           })
         );
@@ -199,6 +199,19 @@ const Dashboard = (props: Props) => {
       dataIndex: "quantity",
       key: "quantity",
       // render:(quantity) => (quantity >= 0 ? quantity : 0)
+    },
+    {
+      title: "price_var",
+      dataIndex: "price_var",
+      key: "price_var",
+      render: (price_var:number, record:any) => (
+        <span>
+          {record.price_var?.toLocaleString("vi-VN", {
+            style: "currency",
+            currency: "VND",
+          })}
+        </span>
+      ),
     },
     {
       title: <Link to={`/admin/product/detail/add/${id}`}>

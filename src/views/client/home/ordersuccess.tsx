@@ -23,7 +23,7 @@ const Ordersuccess = () => {
   const [selectedVoucherValue, setSelectedVoucherValue] = useState(0);
   const [total, setTotal] = useState(0);
 
-
+  
 
   useEffect(() => {
     if (cartUser && ProductDetailUser) {
@@ -84,7 +84,7 @@ const Ordersuccess = () => {
     }
   }, [cartUser, ProductDetailUser, Product]);
 
-
+ 
   useEffect(() => {
     const selectedVoucher = JSON.parse(localStorage.getItem("selectedVoucher"));
 
@@ -123,9 +123,9 @@ const Ordersuccess = () => {
       </div>
     );
   }
-
-
-
+  
+  
+ 
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -305,7 +305,7 @@ const Ordersuccess = () => {
                     </div>
                   </div>
 
-
+                 
                 </div>
               </div>
             </div>
