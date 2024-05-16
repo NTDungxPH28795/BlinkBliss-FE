@@ -249,7 +249,7 @@ const Ordersuccess = () => {
                       <tr>
                         <th scope="col">Hình Ảnh</th>
                         <th scope="col">| Tên Sản Phẩm</th>
-                        <th scope="col">| Kích Cỡ</th>
+                        <th scope="col">| Loại</th>
                         <th scope="col">| Màu Sắc</th>
                         <th scope="col">| Số Lượng</th>
                         <th scope="col">| Giá</th>

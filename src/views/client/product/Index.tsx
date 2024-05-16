@@ -78,7 +78,7 @@ const Index = () => {
       filteredData = searchResult;
       setDataSourceToRender(filteredData);
       setRole('Thương hiệu');
-      setHuhu('Kích cỡ');
+      setHuhu('Loại');
     }
   };
 
@@ -117,7 +117,7 @@ const Index = () => {
     filteredData = searchResult;
     setDataSourceToRender(filteredData);
     setRole('Thương hiệu');
-    setHuhu('Kích cỡ');
+    setHuhu('Loại');
   };
 
   if (isLoading) {
@@ -174,7 +174,7 @@ const Index = () => {
                       }}
                     >
                       <option selected>
-                        Kích cỡ
+                        Loại
                       </option>
                       {Size?.map((item) => {
                         return <option value={item}>{item}</option>;

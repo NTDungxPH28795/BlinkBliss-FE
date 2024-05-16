@@ -305,11 +305,11 @@ const Dashboard = (props: Props) => {
         </Select>
         <Select
           style={{ width: 200, height: 40, marginRight: 8, margin: 5 }}
-          placeholder="Chọn Kích Thước"
+          placeholder="Chọn loại"
           value={selectedSize}
           onChange={(value) => setSelectedSize(value)}
         >
-          <Option value={undefined}>Tất cả kích thước</Option>
+          <Option value={undefined}>Tất cả loại</Option>
           {uniqueSizes.map((size) => (
             <Option key={size} value={size}>
               {size}

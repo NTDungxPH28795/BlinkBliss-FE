@@ -189,7 +189,7 @@ const ProductDetail = () => {
           messageApi.error({
             type: "error",
             content:
-              "Vui lòng chọn kích cỡ trước khi thêm vào giỏ hàng !!!",
+              "Vui lòng chọn loại trước khi thêm vào giỏ hàng !!!",
             className: "custom-class",
             style: {
               margin: "10px",
@@ -392,7 +392,7 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="product-detail  size">
-                  <p>Kích Cỡ</p>
+                  <p>Loại</p>
                   <div className="size-buttons">
                     {productSizes?.map((size, index) => (
                       <button

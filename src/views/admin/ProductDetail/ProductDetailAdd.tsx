@@ -96,7 +96,7 @@ const ProductAdd = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="productSize" className="form-label">
-                    Kích Cỡ
+                    Loại
                   </label>
                   <input
                     type="text"

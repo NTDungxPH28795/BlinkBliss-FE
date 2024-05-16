@@ -167,7 +167,7 @@ const Index = () => {
                   className="form-select-product"
                 >
                   <option selected disabled>
-                    Kích cỡ
+                    Loại
                   </option>
                   {Size?.map((item) => {
                     return <option value={item}>{item}</option>;
