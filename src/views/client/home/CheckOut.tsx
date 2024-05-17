@@ -657,58 +657,6 @@ const CheckOut = () => {
                     <div id="recaptcha-container"></div>
                   </div>
 
-                  {/* <div className="row">
-                  <div className="col-lg-12">
-                    <div className="form-group focused">
-                      <label className="form-control-label" htmlFor="input-city">Thành phố</label>
-                      <select
-                        id="city"
-                        onChange={handleCityChange}
-                        value={selectedCity}
-                        className='form-select form-control-alternative form-control-label text-black'
-                        required
-                      >
-                        <option value="" disabled>Chọn tỉnh thành</option>
-                        {cities?.map((city: any) => (
-                          <option key={city.code} value={city.code}>{city.name}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="form-group focused">
-                      <label className="form-control-label" htmlFor="input-country">Huyện</label>
-                      <select
-                        id="district"
-                        onChange={handleDistrictChange}
-                        value={selectedDistrict}
-                        className='form-select form-control-alternative form-control-label text-black'
-                        required
-                      >
-                        <option value="" disabled>Chọn quận huyện</option>
-                        {districts?.map((district: any) => (
-                          <option key={district.code} value={district.code}>{district.name}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="form-group">
-                      <label className="form-control-label" htmlFor="input-country">Xã</label>
-                      <select
-                        id="ward"
-                        onChange={handleWardChange}
-                        value={selectedWard}
-                        className='form-select form-control-alternative form-control-label text-black'
-                        required
-                      >
-                        <option value="" disabled>Chọn phường xã</option>
-                        {wards?.map((ward: any) => (
-                          <option key={ward.code} value={ward.code}>{ward.name}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div> */}
                   <div className="col-lg-12">
                     <div className="">
                       <label className="form-control-label" htmlFor="input-country">Địa chỉ cụ thể</label>
@@ -731,7 +679,6 @@ const CheckOut = () => {
                     <th scope="col">Hình Ảnh</th>
                     <th scope="col">| Tên Sản Phẩm</th>
                     <th scope="col">| Loại</th>
-                    {/* <th scope="col">| Màu Sắc</th> */}
                     <th scope="col">| Số Lượng</th>
                     <th scope="col">| Giá</th>
                     <th scope="col">| Tạm Tính</th>
@@ -792,75 +739,6 @@ const CheckOut = () => {
                     </td>
                   </tr>
                   <div className="payment_item">
-                    {/* <div className="payment_item active">
-                      <form className="row mt-3">
-                        <label htmlFor="" className="col-8 m-2">
-                          Chọn Mã Khuyến Mãi
-                        </label>
-                        <select
-                          className="col-4 form-select"
-                          value={selectedVoucher}
-                          onChange={(e) => handleVoucherSelect(e.target.value)}
-                        >
-                          <option value="">-- Chọn mã khuyến mãi --</option>
-                          {Array.isArray(voucherStatus) && voucherStatus.length > 0 ? (
-                            voucherStatus.map((voucher: any) => (
-                              <option key={voucher._id} value={voucher.code}>
-                                <img src="https://tse3.mm.bing.net/th?id=OIP.gYaHEu5aZY4P2dsWyYoflQHaDW&pid=Api&P=0&h=180" alt="" width={50} />
-                                {voucher.code} -{" "}
-                                {voucher.value.toLocaleString("vi-VN", {
-                                  style: "currency",
-                                  currency: "VND",
-                                })}
-                              </option>
-                            ))
-                          ) : (
-                            <option value="" disabled>
-                              Bạn đã dùng mã khuyến mại không thể chọn mã khuyến mại khác được nữa .
-                            </option>
-                          )}
-                        </select>
-                      </form>
-                    </div>
-
-
-                    <div className="payment_item active">
-                      <form className="row mt-3"  >
-                        <label htmlFor="" className="col-8 m-2">
-                          Trước Khuyến Mại
-                        </label>
-                        <input
-                          type="text"
-                          disabled
-                          className="col-2 money-checkout w-25"
-                          value={finalTotal?.toLocaleString("vi-VN", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
-                        />
-                      </form>
-                    </div>
-                    <div className="payment_item active">
-                      <form className="row mt-3">
-                        <label htmlFor="" className="col-8 m-2">
-                          Mã Giảm Giá
-                        </label>
-                        <input
-                          type="text"
-                          disabled
-                          className="col-2 money-checkout w-25"
-                          placeholder="*Giá trị voucher"
-                          value={
-                            !isNaN(parseFloat(voucher?.value))
-                              ? parseFloat(voucher?.value).toLocaleString("vi-VN", {
-                                style: "currency",
-                                currency: "VND",
-                              })
-                              : "0 đ"
-                          }
-                        />
-                      </form>
-                    </div> */}
                     <div className="payment_item active">
                       <form className="row mt-3">
                         <label htmlFor="" className="col-8 m-2">
@@ -976,10 +854,6 @@ const CheckOut = () => {
                           Việc đặt hàng của bạn đồng thời chấp nhận{" "}
                         </label>
                         <a href="#"> điều khoản và dịch vụ*</a>của chúng tôi.
-                        {/* <label htmlFor="f-option4">
-                          ** Đối với đơn hàng nội thành là 25k, ngoại thành là
-                          40k
-                        </label> */}
                       </div>
                     </div>
                     <div className="card_area col-6 align-items-center">
