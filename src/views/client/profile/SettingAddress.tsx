@@ -19,7 +19,6 @@ const SettingAddress = () => {
     usersOne?.commune +
     " , " +
     usersOne?.address;
-  // console.log(addre)
 
   return (
     <div>
