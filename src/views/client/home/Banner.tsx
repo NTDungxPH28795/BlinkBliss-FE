@@ -20,7 +20,6 @@ const Banner = () => {
                     <div className="row d-flex justify-content-center">
                         <div className="col-xxl-7 col-xl-8 col-lg-9 col-md-12 col-sm-12 col-12 text-center">
                             <div className="hero-title fs-1 fw-bold text-uppercase">
-                                {/* Dịch vụ chuyên nghiệp sửa chữa, làm mới, và giặt giày toàn quốc<br> */}
                                 <div className="highlight-hero-title position-relative">
                                     <div className="highlight-hero-title-inner">
                                         BlinkBliss
@@ -32,7 +31,6 @@ const Banner = () => {
                                 đam mê về việc cung cấp dịch vụ bán blindbox cho người dùng trên khắp
                                 cả nước.</p>
                             <div className="hero-action d-flex flex-wrap justify-content-center gap-3">
-                                {/* <a href="#" className="btn btn-primary btn-hover-secondery text-capitalize fw-normal">Đọc thêm &gt;</a> */}
                                 <a href="tel:0332573175" className="btn btn-outline-primary btn-hover-outline-secondery text-capitalize fw-normal">Liên
                                     Hệ</a>
                             </div>

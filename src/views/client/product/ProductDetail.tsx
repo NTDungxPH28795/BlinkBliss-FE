@@ -306,34 +306,6 @@ const ProductDetail = () => {
             <div className="col-lg-5 offset-lg-1">
               <div className="s_product_text">
                 <h3>{prodetailData?.name}</h3>
-                
-                {/* {prodetailData?.price_sale > 0 ? (
-                  <div className="product-price row">
-                    <strong className="col-12">
-                      {prodetailData?.price_sale?.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                    </strong>
-                    <div className="d-flex">
-                      <del className="price-del">
-                        {prodetailData?.price?.toLocaleString("vi-VN", {
-                          style: "currency",
-                          currency: "VND",
-                        })}
-                      </del>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="product-price row">
-                    <strong className="col-12">
-                      {prodetailData?.price?.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                    </strong>
-                  </div>
-                )} */}
                 <div>
                   {productdeprice ? (
                     <div className="product-price row pb-2">
@@ -405,20 +377,6 @@ const ProductDetail = () => {
                       </button>
                     ))}
                   </div>
-                  
-                  {/* <div className="remaining-quantity mt-3">
-                    <p>
-                      {selectedSize &&
-                        `Tổng số lượng sản phẩm cho loại
-                         ${selectedSize}: ${totalQuantityForSelectedSize !== null
-                          ? totalQuantityForSelectedSize
-                          : "Loading..."
-                        }`}
-                      {quantityError && (
-                        <Alert type="error" message={quantityError} showIcon />
-                      )}
-                    </p>
-                  </div> */}
                   {quantityError && (
                     <div className="quantity-error mt-3">
                       <p style={{ color: "red" }}>{quantityError}</p>

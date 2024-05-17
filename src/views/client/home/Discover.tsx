@@ -26,15 +26,6 @@ const Discover = () => {
                   </h4>
                 </div>
               </div>
-              {/* <div className="col-xxl-3 col-xl-3 col-md-3 col-sm-6 col-12 text-center">
-                <div className="feature-card">
-                  <img src="/src/assets/images/features/responsive-design.svg" />
-                  <h4 className="text-uppercase fw-bold text-secondary pt-4">
-                    Voucher lên tới
-                    <br /> 22%
-                  </h4>
-                </div>
-              </div> */}
               <div className="col-xxl-3 col-xl-3 col-md-3 col-sm-6 col-12 text-center">
                 <div className="feature-card">
                   <img src="/src/assets/images/features/freindly-support.svg" />
@@ -55,14 +46,6 @@ const Discover = () => {
           </div>
         </section>
         <section className="our-portfolio position-relative">
-          {/* <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12 d-flex justify-content-center">
-                                <a href="#" className="btn btn-primary btn-hover-secondery text-capitalize fw-normal">Đăng ký
-                                    ngay</a>
-                            </div>
-                        </div>
-                    </div> */}
           <div className="">
             <img
               src="/src/assets/images/our-portfolio/waves.svg"

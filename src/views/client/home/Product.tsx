@@ -96,39 +96,6 @@ const Product = () => {
   }
   return (
     <div className="w-[90%] container">
-      {/* <section className="our-team position-relative">
-        <div className="container">
-          <div className="fs-2 mb-4 section-heading text-uppercase fw-bold text-center">
-            Thương Hiệu
-          </div>
-          <div></div>
-          <div className="row my-xl-5 my-0 ourteam-row position-relative">
-            <div className="row">
-              {brandData?.map((item) => {
-                return (
-                  <div
-                    className=" col-xxl-2 border-2 col-xl-2 col-lg-2 col-sm-2 col-4 "
-                    key={item._id}
-                  >
-                    <div className="">
-                      <div className="position-relative overflow-hidden">
-                        <img
-                          src={item.image}
-                          alt=""
-                          width="100%"
-                          height="100px"
-                          style={{ marginTop: "10%" }}
-                          className=" inset-0 object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section> */}
       {/* page product */}
       <div>
         <PageProduct
