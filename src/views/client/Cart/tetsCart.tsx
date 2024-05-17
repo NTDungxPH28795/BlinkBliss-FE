@@ -291,6 +291,7 @@ const Cart = () => {
       </div>
     );
   }
+  
   // console.log(cartDetail);
   return (
     <div>
