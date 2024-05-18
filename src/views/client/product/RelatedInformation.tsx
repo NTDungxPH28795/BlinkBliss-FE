@@ -14,8 +14,11 @@ const RelatedInformation = () => {
                 </p>
             </div>
             {/* <div>
-                <h4>Hướng dẫn chọn size</h4>
-                <img src="https://cdn.mykiot.vn/2021/09/16319496925f368bd760f3ec6e24bbfa6bc4f42573.png" alt="" />
+                
+                Pop MART chính thức khai trương!!
+                Chúng tôi sẽ mang đến cho bạn các hoạt động giảm giá tuyệt vời và nhiều sản phẩm giới hạn chính thức khác nhau
+                Vui lòng theo dõi cửa hàng của chúng tôi để biết thông tin mới nhất
+                Tất cả hàng hóa là chính thức và xác thực ~
             </div>
             <div>
                 <h5>HƯỚNG DẪN BẢO QUẢN & SỬ DỤNG:</h5>

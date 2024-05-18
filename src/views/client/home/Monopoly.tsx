@@ -108,7 +108,7 @@ const Monopoly = () => {
                                             <label className="form-label text-uppercase mb-3">Vấn đề gặp phải</label>
                                             <select className="form-control border-0">
                                                 <option selected disabled>[vấn đề]</option>
-                                                <option>Sửa giày</option>
+                                                <option>Sửa Loại</option>
                                                 <option>Báo cáo</option>
                                             </select>
                                         </div>

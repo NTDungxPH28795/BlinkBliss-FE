@@ -39,17 +39,13 @@ const Cart = () => {
     }
   }, [ProductDetailUser]);
   useEffect(() => {
-    // console.log("All product quantities:", productQuantities);
   }, [productQuantities]);
-  // console.log("productQuantities:", productQuantities);
 
   const getQuantityInStock = (productDetailId) => {
     return productQuantities[productDetailId] || 0;
   };
 
   console.log(cartDetail);
-  // console.log(cartUser)
-  // sản phẩm dược chọn
   const productsWithTrueStatus = cartDetail.filter(
     (product: any) => product.status === true
   );
@@ -102,7 +98,6 @@ const Cart = () => {
               (product: any) => product.productDetailId === item._id
             )._id;
 
-            // Lấy số lượng trong kho từ state productQuantities
             const quantityInStock = productQuantities[item._id] || 0;
 
             return {
@@ -117,7 +112,7 @@ const Cart = () => {
               idCartDetail: idCartDetail,
               status: status,
               cart_id: cart_id,
-              quantityInStock: quantityInStock, // Thêm thông tin số lượng trong kho
+              quantityInStock: quantityInStock, 
             };
           } else {
             return item;
@@ -359,9 +354,7 @@ const Cart = () => {
                     <th>#</th>
                     <th scope="col">Hình Ảnh</th>
                     <th scope="col">Tên Sản Phẩm</th>
-                    {/* <th scope="col">Số lượng còn lại</th> */}
                     <th scope="col">Loại</th>
-                    {/* <th scope="col">Màu Sắc</th> */}
                     <th scope="col">Số Lượng</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tạm Tính</th>
