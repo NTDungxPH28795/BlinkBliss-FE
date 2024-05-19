@@ -12,33 +12,26 @@ const PaymentComponent = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    // Include any necessary data for the payment request
                     amount: 1000000, // Example amount
                     bankCode: 'INTCARD', // Example bank code
                     language: 'vn', // Example language
-                    // Include other required data
                 }),
             });
 
             const data = await response.json();
 
-            // Update state with the payment URL
             setPaymentUrl(data.paymentUrl);
 
-            // Redirect the user to the payment gateway
             window.location.href = data.paymentUrl;
         } catch (error) {
             console.error('Error initiating payment:', error);
-            // Handle errors
         }
     };
 
     return (
         <div>
-            {/* Your UI elements */}
             <button onClick={initiatePayment}>Initiate Payment</button>
 
-            {/* Display payment details for debugging purposes */}
             <div>
                 <h2>Payment Details</h2>
                 <p>Payment URL: {paymentUrl}</p>
