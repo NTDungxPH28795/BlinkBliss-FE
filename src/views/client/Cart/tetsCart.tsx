@@ -23,10 +23,8 @@ const Cart = () => {
   const { data: Product } = useGetProductsQuery();
   const [removeCartDetailMutation] = useRemoveCartDetailMutation();
   const [updateCartDetailMutation] = useUpdateCartDetailMutation();
-  // const [cartDetailCheckbot, setCartDetailCheckbot] = useState([]);
 
   console.log(cartDetail);
-  // console.log(cartUser)
   // sản phẩm dược chọn
   const productsWithTrueStatus = cartDetail.filter(
     (product: any) => product.status === true
@@ -69,7 +67,6 @@ const Cart = () => {
             const cart_id = cartUser?.products.find(
               (product: any) => product.productDetailId === item._id
             ).cart_id;
-            // console.log(status)
             const quantity = cartUser?.products.find(
               (product: any) => product.productDetailId === item._id
             ).quantity;
@@ -96,7 +93,6 @@ const Cart = () => {
       setCartDetail(modifiedProductDetails);
     }
   }, [cartUser, ProductDetailUser]);
-  // console.log(cartDetail)
   // remove
   const removeProduct = async (id: string) => {
     try {
@@ -275,7 +271,6 @@ const Cart = () => {
       idCartDetail: item?.idCartDetail,
       status: e.target.checked,
     };
-    // console.log(checkbox)
     updateCartDetailMutation(checkbox);
   };
 
@@ -292,7 +287,6 @@ const Cart = () => {
     );
   }
   
-  // console.log(cartDetail);
   return (
     <div>
       <section className="cart_area">
