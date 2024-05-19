@@ -101,14 +101,6 @@ const VoucherEdit: React.FC = () => {
                             <Input />
                         </Form.Item>
 
-                        {/* <Form.Item<FieldType>
-                            label="Status"
-                            name="status"
-                            rules={[{ required: true, message: "Please input the status" }]}
-                        >
-                            <Input />
-                        </Form.Item> */}
-
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit">
                                 Cập nhật
