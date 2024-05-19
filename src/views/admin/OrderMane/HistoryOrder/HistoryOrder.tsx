@@ -5,7 +5,6 @@ import { useFetchCheckoutQuery } from '../../../../services/checkout.service';
 import OrderDetails from '../OrderDetails';
 
 const HistoryOrder: React.FC = () => {
-    /////// modal
     const [open, setOpen] = useState(false);
     const showModal = () => {
         setOpen(true);
@@ -13,7 +12,6 @@ const HistoryOrder: React.FC = () => {
     const hideModal = () => {
         setOpen(false);
     };
-    ///////
     const { data: orderDa, isLoading } = useFetchCheckoutQuery()
     const [roleMane, setRoleMane] = useState<any>({});
 
@@ -22,7 +20,6 @@ const HistoryOrder: React.FC = () => {
         setRoleMane(productToEdit)
         showModal();
     };
-    // console.log(roleMane)
     // bảng dữ liệu
     const [searchFullName, setSearchFullName] = useState<string | undefined>(undefined);
 
@@ -56,7 +53,6 @@ const HistoryOrder: React.FC = () => {
         ?.sort((a, b) => new Date(b.dateCreate).getTime() - new Date(a.dateCreate).getTime())
         ?.map((order, index) => ({ ...order, index: index + 1 }));
 
-    // console.log(successfulOrders)
     if (isLoading) {
         return <div>
             <div className="right-wrapper" style={{ paddingTop: "100px" }}>
@@ -141,7 +137,6 @@ const HistoryOrder: React.FC = () => {
                     <Button type='primary' onClick={() => handleEditClick(record?._id)} >
                         Xem Chi Tiết
                     </Button>
-                    {/* </Link> */}
                 </span>
             ),
         },
