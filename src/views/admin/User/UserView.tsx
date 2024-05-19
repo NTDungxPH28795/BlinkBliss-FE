@@ -134,7 +134,6 @@ const App: React.FC = () => {
     }
 
     const columns = [
-        // { title: 'Tên người dùng', dataIndex: 'userName', key: 'userName' },
         { title: 'Tên người dùng', dataIndex: 'fullName', key: 'fullName' },
         { title: 'Email', dataIndex: 'email', key: 'email' },
         { title: 'Giới tính', dataIndex: 'gender', key: 'gender' },

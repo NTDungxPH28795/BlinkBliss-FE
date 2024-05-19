@@ -119,7 +119,6 @@ const UserAdd = () => {
                   action="contact_process.php"
                   method="post"
                   id="contactForm"
-                  // noValidate="novalidate"
                   onSubmit={handleSubmit(submitSignup)}
                 >
                   <label htmlFor="fullName" className="form-label col-md-1 ">

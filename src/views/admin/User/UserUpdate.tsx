@@ -21,7 +21,6 @@ const YourFormComponent = () => {
         console.error('Id is undefined or null.');
         return null;
     }
-    // console.log(role_id)
     useEffect(() => {
         if (user) {
             setValue('_id', user._id);
@@ -39,7 +38,6 @@ const YourFormComponent = () => {
     const onSubmit = async (user: any) => {
         try {
             const response = await updateUser(user);
-            // console.log(response)
             if (response.error) {
                 messageApi.open({
                     type: 'error',

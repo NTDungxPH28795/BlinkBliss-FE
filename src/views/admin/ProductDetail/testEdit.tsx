@@ -19,7 +19,6 @@ type FieldType = {
 
 const ProductProductEdit = () => {
   const { idProduct } = useParams<{ idProduct: string }>();
-  // console.log(idProduct)
   const handleGoBack = () => {
     navigate(-1);
   };
