@@ -31,7 +31,6 @@ const OrderMane: React.FC = () => {
     setRoleMane(updatedOrderDa);
   };
 
-  ///////
   const { data: orderDa, isLoading, isFetching } = useFetchCheckoutQuery();
   const [updateCheck] = useUpdateCheckoutMutation();
   const [roleMane, setRoleMane] = useState<any>({});
@@ -50,7 +49,6 @@ const OrderMane: React.FC = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // console.log(orderDa)
 
   const [searchFullName, setSearchFullName] = useState<string | undefined>(
     undefined
@@ -59,7 +57,6 @@ const OrderMane: React.FC = () => {
   const handleFullNameSearchChange = (value: string) => {
     setSearchFullName(value.toLowerCase());
   };
-  // console.log(dateCreateArray);
   const [searchID, setSearchID] = useState<string | undefined>(undefined);
 
   const handleIDSearchChange = (value: string) => {
@@ -80,8 +77,6 @@ const OrderMane: React.FC = () => {
     };
   });
 
-  // console.log(searchResult)
-  // console.log(nonSuccessfulOrder);
   const onSearch = (value: string) => {
     if (value === "") {
       setSearchResult(nonSuccessfulOrders);
@@ -114,9 +109,6 @@ const OrderMane: React.FC = () => {
     }
   };
 
-  // console.log(searchResult)
-
-  //
   const [cancellationOrderId, setCancellationOrderId] = useState<string | null>(
     null
   );
