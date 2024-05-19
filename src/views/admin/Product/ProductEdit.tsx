@@ -94,8 +94,6 @@ const ProductEdit: React.FC = () => {
     }
   }, [productData]);
 
-  // console.log(content1);
-
   const onSubmit: SubmitHandler<FieldType> = async (data) => {
     try {
       console.log("Images before update:", selectedImages);

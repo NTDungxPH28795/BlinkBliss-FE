@@ -185,9 +185,6 @@ const ProductAdd: React.FC = () => {
                       validate: validateSalePrice
                     })}
                     type="number"
-                    //                     className={`form-control ${errors.price_sale ? "" : ""
-                    //                       }`}
-                    //                     id="productPrice"
                     value={0}
                     className={`form-control ${errors.price_sale ? "is-invalid" : ""}`}
                     id="productPriceSale"

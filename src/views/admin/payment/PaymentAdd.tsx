@@ -8,7 +8,6 @@ import { useAddPaymentMutation } from '../../../services/payment.service';
 const PaymentAdd: React.FC = () => {
     const [form] = Form.useForm();
     const [addPayment] = useAddPaymentMutation();
-    // const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
 
     const onFinish = async (payment: IPayment) => {
@@ -33,7 +32,6 @@ const PaymentAdd: React.FC = () => {
             <div className="row">
                 <div className="card-body">
                     <h5 className="card-title fw-semibold mb-4">Thêm Phương Thức Thanh Toán</h5>
-                    {/* {contextHolder} */}
                     <Form
                         form={form}
                         name="basic"

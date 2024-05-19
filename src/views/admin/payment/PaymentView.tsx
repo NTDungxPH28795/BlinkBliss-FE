@@ -55,7 +55,6 @@ const PaymentView: React.FC = () => {
         // Khi người dùng nhấn Enter để tìm kiếm
         // useEffect sẽ được gọi và cập nhật dataSource
     };
-    // 
     if (isLoading) {
         return <div>
             <div className="right-wrapper" style={{ paddingTop: "100px" }}>
@@ -150,7 +149,6 @@ const PaymentView: React.FC = () => {
                                     <Button type="primary" htmlType="submit" >
                                         Tìm kiếm
                                     </Button>
-                                    {/* <button type="submit" className=" btn btn-secondary ">Tìm kiếm</button> */}
                                 </form>
                             </div>
                             <div className="table-responsive">
