@@ -38,7 +38,6 @@ interface DataType {
 
 const Dashboard = (props: Props) => {
   const { id } = useParams();
-  // console.log("ID:", id);
   const [dataSourceToRender, setDataSourceToRender] = useState<DataType[]>([]);
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined
@@ -87,7 +86,6 @@ const Dashboard = (props: Props) => {
           (product) => product.product_id === productIdToFind
         );
 
-        // console.log(filteredProducts);
 
         const updatedDataSource = filteredProducts?.map(
           ({ _id, size, quantity, product_id, price_var }) => ({
@@ -198,7 +196,6 @@ const Dashboard = (props: Props) => {
       title: "Quantity",
       dataIndex: "quantity",
       key: "quantity",
-      // render:(quantity) => (quantity >= 0 ? quantity : 0)
     },
     {
       title: "price_var",
@@ -280,17 +277,11 @@ const Dashboard = (props: Props) => {
         />
       )}
       <div className="search-bar">
-        {/* <Input
-          placeholder="Tìm kiếm sản phẩm"
-          value={searchProductId}
-          onChange={(e) => setSearchProductId(e.target.value)}
-        /> */}
         <Select
           style={{ width: 200, height: 40, marginRight: 8, margin: 5 }}
           placeholder="Chọn Màu"
           value={selectedColor}
           onChange={(value) => setSelectedColor(value)}
-        // style={{ marginBottom: "20px", marginTop: "40px" }}
         >
           <Option value={undefined}>All Color</Option>
           {dataSourceToRender && dataSourceToRender.length > 0 ? (
