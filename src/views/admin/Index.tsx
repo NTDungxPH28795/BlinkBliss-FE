@@ -1,4 +1,3 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
 import SideBar from '../../components/main/SideBar'
 import TopSideBar from '../../components/main/TopSideBar'
