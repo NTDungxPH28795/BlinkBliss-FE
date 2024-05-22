@@ -1,5 +1,3 @@
-// import React from 'react'
-// import { auth, googleProvider } from "./Firebase";
 
 import React, { useState, useEffect } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
